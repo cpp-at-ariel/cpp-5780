@@ -31,8 +31,10 @@ struct ReporterGrader: public IReporter {
     void report_query(const QueryData& /*in*/) override {}
     void test_run_start() override {}
     void test_run_end(const TestRunStats& run_stats) override {
-        std::cout << run_stats.numTestCasesFailed << " " << " out of " << run_stats.numTestCasesPassingFilters << " tests failed" << std::endl;
-        std::cout << run_stats.numAssertsFailed << " " << " out of " << run_stats.numAsserts << " asserts failed" << std::endl;
+        // std::cout << run_stats.numTestCasesFailed << " " << " out of " << run_stats.numTestCasesPassingFilters << " tests failed" << std::endl;
+        // std::cout << run_stats.numAssertsFailed << " " << " out of " << run_stats.numAsserts << " asserts failed" << std::endl;
+        float grade = (run_stats.numAsserts - run_stats.numAssertsFailed) * 100 / run_stats.numAsserts;
+        std::cout << "[doctest] Your grade is " << grade << std::endl;
     }
     void test_case_start(const TestCaseData& input_data) override { test_case_data = &input_data; }
     void test_case_reenter(const TestCaseData& /*in*/) override {}
@@ -40,18 +42,7 @@ struct ReporterGrader: public IReporter {
     void test_case_exception(const TestCaseException& /*in*/) override {}
     void subcase_start(const SubcaseSignature& /*in*/) override {}
     void subcase_end() override { }
-
-
-    void log_assert(const AssertData& rb) override {
-            if(!rb.m_failed && !options.success)
-                return;
-            file_line_to_stream(std::cout, rb.m_file, rb.m_line, " ");
-            std::cout << (rb.m_threw ? "THREW exception: " :
-                                (!rb.m_failed ? "is correct!\n" : "is NOT correct!\n"));
-            std::cout << "  values: " << assertString(rb.m_at) << "( " << rb.m_decomp << " )\n";
-
-    }
-
+    void log_assert(const AssertData& rb) override {  }
     void log_message(const MessageData& /*in*/) override {}
     void test_case_skipped(const TestCaseData& /*in*/) override {}
 };
