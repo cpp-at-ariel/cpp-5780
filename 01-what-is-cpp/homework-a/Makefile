@@ -8,14 +8,11 @@ run: demo
 demo: Demo.o Gimatriya.o
 	$(CPP) $^ -o demo
 
-our_test: TestMain.o Reporters.o TestExample.o Gimatriya.o
-	$(CPP) $^ -o our_test
-
-test: TestMain.o Reporters.o Test.o Gimatriya.o
+test: TestCounter.o Test.o Gimatriya.o
 	$(CPP) $^ -o test
 
 %.o: %.cpp Gimatriya.hpp
 	$(CPP) --compile $< -o $@
 
 clean:
-	rm -f *.o demo our_test test
+	rm -f *.o demo test
