@@ -2,7 +2,7 @@
 
 CPP=clang++-9 -std=c++2a
 
-run: test
+run: your_test
 	./$^
 
 demo: DemoProgram.o Gimatriya.o

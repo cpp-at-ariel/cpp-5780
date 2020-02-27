@@ -23,15 +23,11 @@ struct ReporterCounter: public IReporter {
     void report_query(const QueryData& /*in*/) override {}
     void test_run_start() override {}
     void test_run_end(const TestRunStats& run_stats) override {
-        // std::cout << run_stats.numTestCasesFailed << " " << " out of " << run_stats.numTestCasesPassingFilters << " tests failed" << std::endl;
-        // std::cout << run_stats.numAssertsFailed << " " << " out of " << run_stats.numAsserts << " asserts failed" << std::endl;
         if (run_stats.numAsserts >= MIN_TESTS) {
             std::cout << 100 << std::endl;
         } else {
             std::cout << "Please write at least " << MIN_TESTS << " tests! " <<  std::endl << 0  << std::endl;
         }
-        float grade = (run_stats.numAsserts - run_stats.numAssertsFailed) * 100 / run_stats.numAsserts;
-        std::cout << "Grade: " << grade << std::endl;
     }
     void test_case_start(const TestCaseData& input_data) override { test_case_data = &input_data; }
     void test_case_reenter(const TestCaseData& /*in*/) override {}
