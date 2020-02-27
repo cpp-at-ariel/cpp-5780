@@ -1,5 +1,7 @@
 /**
- * Demo program for Gimatriya calculation
+ * Demo program for Gimatriya calculation.
+ * 
+ * Date: 2020-02
  */
 
 #include "Gimatriya.hpp"
