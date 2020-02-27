@@ -1,0 +1,8 @@
+#!/bin/bash
+source grade_utils
+printf "\n\n*** Grade itertools Part B *** \n\n"
+
+make clean
+call make -f Makefile test
+call timeout 1 ./test
+make --silent clean

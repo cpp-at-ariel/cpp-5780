@@ -2,14 +2,8 @@
 
 CPP=clang++-9 -std=c++2a
 
-run: demo
+run: test
 	./$^
-
-demo: Demo.o Gimatriya.o
-	$(CPP) $^ -o demo
-
-our_test: TestMain.o Reporters.o TestExample.o Gimatriya.o
-	$(CPP) $^ -o our_test
 
 test: TestMain.o Reporters.o Test.o Gimatriya.o
 	$(CPP) $^ -o test
@@ -18,4 +12,4 @@ test: TestMain.o Reporters.o Test.o Gimatriya.o
 	$(CPP) --compile $< -o $@
 
 clean:
-	rm -f *.o demo our_test test
+	rm -f *.o test
