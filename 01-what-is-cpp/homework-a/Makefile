@@ -1,6 +1,6 @@
 #!make -f
 
-CPP=clang++-9 -std=c++17
+CPP=clang++-9 -std=c++2a
 
 run: test
 	./$^
