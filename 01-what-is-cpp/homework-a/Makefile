@@ -5,10 +5,10 @@ CPP=clang++-9 -std=c++2a
 run: your_test
 	./$^
 
-demo: DemoProgram.o Gimatriya.o
+demo: Demo.o Gimatriya.o
 	$(CPP) $^ -o demo
 
-our_test: TestMain.o Reporters.o DemoTest.o Gimatriya.o
+our_test: TestMain.o Reporters.o TestExample.o Gimatriya.o
 	$(CPP) $^ -o our_test
 
 test: TestMain.o Reporters.o Test.o Gimatriya.o
