@@ -57,7 +57,8 @@ struct ReporterGrader: public IReporter {
     void test_run_end(const TestRunStats& run_stats) override {
         // std::cout << run_stats.numTestCasesFailed << " " << " out of " << run_stats.numTestCasesPassingFilters << " tests failed" << std::endl;
         // std::cout << run_stats.numAssertsFailed << " " << " out of " << run_stats.numAsserts << " asserts failed" << std::endl;
-        float grade = (run_stats.numAsserts - run_stats.numAssertsFailed) * 100 / run_stats.numAsserts;
+        int numAsserts = run_stats.numAsserts >=  MIN_TESTS? run_stats.numAsserts:  MIN_TESTS;
+        float grade = (run_stats.numAsserts - run_stats.numAssertsFailed) * 100 / numAsserts;
         std::cout << "Grade: " << grade << std::endl;
     }
     void test_case_start(const TestCaseData& input_data) override { test_case_data = &input_data; }

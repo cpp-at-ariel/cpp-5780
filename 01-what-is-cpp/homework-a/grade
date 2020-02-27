@@ -15,18 +15,6 @@ grade_command ./demo
 grades[$i]=$grade
 printf "### Score $i: ${grades[$i]}\n"
 
-# let "i=i+1"
-# printf "\n\n### Check $i: our test program should compile with your function\n"
-# grade_command make -f Makefile our_test
-# grades[$i]=$grade
-# printf "### Score $i: ${grades[$i]}\n"
-# 
-# let "i=i+1"
-# printf "\n\n### Check $i: our test program should run (may have errors)\n"
-# grade_command ./our_test
-# grades[$i]=$grade
-# printf "### Part $i: ${grades[$i]}\n"
-
 let "i=i+1"
 printf "\n\n### Check $i: your test should compile \n"
 grade_command make -f Makefile test
