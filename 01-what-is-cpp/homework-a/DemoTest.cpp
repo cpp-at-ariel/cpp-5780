@@ -1,10 +1,9 @@
 /**
- * Test program for Gimatriya calculation.
+ * A demonstration test program for Gimatriya calculation.
+ * 
+ * Use this as a basis to build a more complete Test.cpp file.
  * 
  * Date: 2020-02
- * 
- * IMPORTANT: THE TESTS BELOW ARE ONLY A SMALL EXAMPLE.
- *            PLEASE ADD MORE TESTS.
  */
 
 #include "doctest.h"

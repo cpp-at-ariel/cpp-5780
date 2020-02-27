@@ -5,14 +5,17 @@ CPP=clang++-9 -std=c++2a
 run: test
 	./$^
 
-demo: Demo.o Gimatriya.o
+demo: DemoProgram.o Gimatriya.o
 	$(CPP) $^ -o demo
 
-test: TestMain.o ReporterGrader.o Test.o Gimatriya.o
-	$(CPP) $^ -o test
+our_test: TestMain.o Reporters.o DemoTest.o Gimatriya.o
+	$(CPP) $^ -o our_test
+
+your_test: TestMain.o Reporters.o Test.o Gimatriya.o
+	$(CPP) $^ -o your_test
 
 %.o: %.cpp Gimatriya.hpp
 	$(CPP) --compile $< -o $@
 
 clean:
-	rm -f *.o demo test
+	rm -f *.o demo our_test your_test
