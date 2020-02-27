@@ -3,6 +3,8 @@
  * 
  * Use this as a basis to build a more complete Test.cpp file.
  * 
+ * IMPORTANT: Please write more tests - the tests here are only for example and are not complete.
+ * 
  * Date: 2020-02
  */
 
