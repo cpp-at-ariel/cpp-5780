@@ -1,5 +1,5 @@
 #include "doctest.h"
-#include "Factorial.h"
+#include "Factorial.hpp"
 
 TEST_CASE("testing the factorial function") {
     CHECK(factorial(0) == 1);

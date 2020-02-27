@@ -2,13 +2,13 @@
 
 CPP=clang++-9 -std=c++17
 
-all: demo
-	./demo
+run: test
+	./$^
 
 demo: Demo.o Gimatriya.o
 	$(CPP) $^ -o demo
 
-test: TestMain.o Test.o Gimatriya.o
+test: TestMain.o ReporterGrader.o Test.o Gimatriya.o
 	$(CPP) $^ -o test
 
 %.o: %.cpp Gimatriya.hpp
