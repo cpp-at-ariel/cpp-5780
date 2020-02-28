@@ -5,7 +5,7 @@ CPP=clang++-9 -std=c++2a
 run: test
 	./$^
 
-test: TestRunner.o Test.o Gimatriya.o
+test: TestRunner.o Test1.o Test2.o Gimatriya.o
 	$(CPP) $^ -o test
 
 %.o: %.cpp Gimatriya.hpp

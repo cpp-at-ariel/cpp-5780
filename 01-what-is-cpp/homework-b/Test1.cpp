@@ -13,11 +13,7 @@ using namespace ariel;
 TEST_CASE("Test gimatriya without punctuation") {
     CHECK(gimatriya("א") == 1);
     CHECK(gimatriya("תשפ") == 780);
+    /* Add more checks here */
 }
 
-
-TEST_CASE("Test gimatriya with punctuation") {
-    CHECK(gimatriya("'א") == 1);
-    CHECK(gimatriya("תש\"פ") == 780);
-}
-
+/* Add more test cases here */
