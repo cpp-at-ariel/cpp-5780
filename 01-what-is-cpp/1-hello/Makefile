@@ -1,6 +1,6 @@
 #!make -f
-CXX=clang++-5.0
-CXXFLAGS=-std=c++17 
+CXX=clang++-9
+CXXFLAGS=-std=c++2a 
 
 all: 
 	$(CXX) $(CXXFLAGS) *.cpp -o main.exe

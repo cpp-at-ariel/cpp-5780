@@ -9,8 +9,8 @@
 # Based on https://stackoverflow.com/a/2481326/827927
 # AUTHOR: Erel Segal-Halevi
 
-CXX=clang++-5.0
-CPPFLAGS=-std=c++17 
+CXX=clang++-9
+CXXFLAGS=-std=c++2a 
 RM=rm -rf
 
 ifndef MAIN
@@ -25,14 +25,14 @@ all: $(MAINEXECUTABLE)
 	./$(MAINEXECUTABLE)
 
 $(MAINEXECUTABLE): $(OBJECTS)
-	$(CXX) $(CPPFLAGS) $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $(OBJECTS)
 
 
 depend: .depend
 
 .depend: $(SOURCES)
 	$(RM) ./.depend
-	$(CXX) $(CPPFLAGS) -MM $^>>./.depend;
+	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
 
 include .depend
 

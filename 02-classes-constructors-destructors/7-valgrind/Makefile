@@ -2,9 +2,10 @@
 #
 # AUTHOR: Erel Segal-Halevi
 
-CXX=clang++-5.0
+CXX=clang++-9
+CXXFLAGS=-std=c++2a 
+
 RM=rm -f
-CPPFLAGS=-std=c++17 
 
 VALGRIND_FLAGS=
 VALGRIND_FLAGS=-v --leak-check=full --show-leak-kinds=all
@@ -24,7 +25,7 @@ all: $(MAINEXECUTABLE)
 	valgrind --tool=memcheck $(VALGRIND_FLAGS) $(MAINEXECUTABLE) $(VALGRIND_FILTER)
 
 $(MAINEXECUTABLE): $(SOURCES)
-	$(CXX) $(CPPFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
 
 clean:
 	$(RM) *.exe a.out

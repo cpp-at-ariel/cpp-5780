@@ -1,6 +1,7 @@
 #!make -f
-CXX=clang++-5.0
-CXXFLAGS=-std=c++17 
+
+CXX=clang++-9
+CXXFLAGS=-std=c++2a 
 
 ifndef MAIN
   MAIN=./power.cpp
