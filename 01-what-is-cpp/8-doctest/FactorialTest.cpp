@@ -1,11 +1,16 @@
 #include "doctest.h"
 #include "Factorial.hpp"
 
-TEST_CASE("testing the factorial function") {
+TEST_CASE("Factorials of small numbers") {
     CHECK(factorial(0) == 1);
     CHECK(factorial(1) == 1);
     CHECK(factorial(2) == 2);
     CHECK(factorial(3) == 6);
-    CHECK(factorial(10) == 3628800);
 }
 
+TEST_CASE("Factorials of large numbers") {
+    CHECK(factorial(10) == 3628800);
+    /* add more checks here */
+}
+
+/* add more test cases here */
