@@ -27,7 +27,7 @@ int main() {
 		cout << "safesqrt1(4) = " << safesqrt1(4) << endl;
 		cout << "safesqrt1(-4) = " << safesqrt1(-4) << endl;
 	}
-	catch (const std::exception& ex) {
+	catch (exception ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;
 	}
 }
