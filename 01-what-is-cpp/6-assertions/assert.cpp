@@ -5,7 +5,7 @@
  */
  
 // To disable the assertions:
-// Either uncommene this line:
+// Either uncomment this line:
 // #define NDEBUG
 // Or Compile with the flag -DNDEBUG 
 

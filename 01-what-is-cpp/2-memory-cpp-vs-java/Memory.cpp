@@ -19,8 +19,7 @@ class Point {
 };
 
 int main() {
-	int i = 234;
-	cout << "Before new" << ' ' << i << endl;
+	cout << "Before new" << ' ' << endl;
 	this_thread::sleep_for(chrono::seconds(3));
 
 	Point* p = new Point[SIZE];
@@ -32,6 +31,7 @@ int main() {
 	cout << "After new" << endl;
 	// The free memory should drop by ... KB.
 
-	delete[] p;
 	this_thread::sleep_for(chrono::seconds(5));
+
+	delete[] p;
 }

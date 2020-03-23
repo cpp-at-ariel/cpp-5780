@@ -12,6 +12,7 @@ using namespace std;
 
 // Throw a custom object:
 class argument_must_be_positive {};
+
 double safesqrt2(double x) {
 	if (x<0)
 		throw argument_must_be_positive{};
@@ -30,4 +31,5 @@ int main() {
 		auto exception = std::current_exception();
 	 	cout << "   caught exception of type " << exception.__cxa_exception_type()->name() << endl;
 	}
+	cout << safesqrt2(-9) << endl; // uncaught exception
 }

@@ -31,6 +31,6 @@ int main() {
 		cout << "   caught exception: " << message << endl;
 	}
 
-	//cout << safesqrt(-9) << endl; // uncaught exception
+	cout << safesqrt(-9) << endl; // uncaught exception
 	cout << "Program finished successfully" << endl;
 }

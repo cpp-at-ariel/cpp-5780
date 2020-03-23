@@ -9,7 +9,6 @@
 #include <cassert>
 #include <string>
 #include <stdexcept>
-#include <functional>
 using namespace std;
 
 // Throw a standard exception object:
@@ -27,7 +26,13 @@ int main() {
 		cout << "safesqrt1(4) = " << safesqrt1(4) << endl;
 		cout << "safesqrt1(-4) = " << safesqrt1(-4) << endl;
 	}
-	catch (exception ex) {
+	catch (string ex) {
+		cout << "caught string" << endl;
+	}
+	catch (std::out_of_range ex) {
 	 	cout << "   caught exception: " << ex.what() << endl;
+	}
+	catch (std::exception ex) {
+
 	}
 }

@@ -12,5 +12,6 @@ int main() {
     cin >> name;
     cout << endl << "Hello " << name << "!" << endl;
     cout << (1 << 5) << endl;
+    auto i = "abc";
     return 0;
 }
