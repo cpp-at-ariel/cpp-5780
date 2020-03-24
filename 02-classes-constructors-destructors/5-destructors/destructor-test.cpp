@@ -7,7 +7,8 @@
 #include <iostream>
 using namespace std;
 
-struct Test {
+class Test {
+public:
     int x;
     Test(int x): x(x) {cout<<"c "<<x<< endl;}
     ~Test() {cout<<"d "<<x << endl;}
@@ -28,14 +29,18 @@ Test& h() {
 
 int main() {
     cout << "1" << endl;
-    //Test list0(5);
-    Test* plist = new Test(1000);
-    cout << "2" << endl; 
+    Test* plist = new Test(10);
+    {
+        Test list0(5);
+        cout << "in scope" << endl;
+    }
+    cout << "2" << endl;
     Test t(555);
     t = f();
-    cout << "3" << endl; 
+    cout << "3" << endl;
     g(Test(67));
     cout << "4" << endl;
     cout << h().x << endl;
+    Test array[5] {11, 22, 33, 44, 55};
     delete plist;
 }

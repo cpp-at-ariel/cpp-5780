@@ -21,5 +21,8 @@ int main() {
     cout << "array4[0] = " << array4[0].to_string() << endl;
     cout << "array4[1] = " << array4[1].to_string() << endl;
 
+    int size = 5;
+    Point* pArray = new Point[size] { {}, 1, {2,3} };
+
     return 0;
 }

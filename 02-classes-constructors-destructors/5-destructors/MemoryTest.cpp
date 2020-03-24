@@ -15,7 +15,7 @@ using namespace std;
 #include <thread>
 #include <chrono>
 #include <vector>
-constexpr int SIZE=100000*1024; // 100000 KB
+constexpr int SIZE=100000*1024; // 400000 KB
 constexpr int TIME=5; // seconds
 
 int main() {

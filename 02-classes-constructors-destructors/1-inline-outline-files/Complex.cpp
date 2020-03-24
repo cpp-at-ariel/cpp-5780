@@ -5,7 +5,7 @@
 #include "Complex.hpp"
 
 // "outline" constructor implementation:
-Complex::Complex(double re, double im) {  
+Complex::Complex(double re, double im) { 
     (*this).re = re;
     this->im = im; 
 }   

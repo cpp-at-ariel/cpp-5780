@@ -6,7 +6,7 @@ CXXFLAGS=-std=c++2a
 all: a.out
 	./a.out
 
-a.out: Point.o main.o Rectangle.o Triangle.o Circle.o
+a.out: main.o Point.o Rectangle.o Triangle.o Circle.o
 	$(CXX) $(CXXFLAGS) Point.o main.o Rectangle.o Triangle.o Circle.o
 
 Point.o: Point.cpp Point.hpp

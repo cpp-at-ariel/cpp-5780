@@ -19,5 +19,4 @@ int main() {
 
     Complex d;
     cout << "d = " << d.to_string() << endl;
-
 }
