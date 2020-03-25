@@ -16,7 +16,7 @@ public:
 };
 
 int main() {
-	for (int i=0; i<10; ++i) {
+	for (int i=0; i<20; ++i) {
 		IntArray a(1000);
 		a.put(4, 10);
 		cout << a.get(4) << endl;

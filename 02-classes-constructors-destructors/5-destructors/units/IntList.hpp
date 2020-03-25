@@ -22,7 +22,7 @@ class IntList {
             delete[] theInts;
             delete[] listName;
         }
-
+        
         void print() {cout << "pointer=" << theInts << endl; }
 
         void fill(int value);

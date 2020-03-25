@@ -20,7 +20,7 @@ string Point::to_string() {
 
 
 Point::Point(int x, int y) {
-    cout << "Point(int,int)" << endl; 
+    cout << "Point[int,int]" << endl; 
 	this->x = x;
 	this->y = y;
 }

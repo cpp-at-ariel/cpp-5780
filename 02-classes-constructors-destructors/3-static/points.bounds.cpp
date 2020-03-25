@@ -14,7 +14,7 @@ class Point {
 
     // A static const can be initialized inline:
     static const int MAXX=1366;
-    // A non-static const must be initialized out-of-line:
+    // A static non-const must be initialized out-of-line:
     static int MAXY;
 
     void setX(int newX) { 

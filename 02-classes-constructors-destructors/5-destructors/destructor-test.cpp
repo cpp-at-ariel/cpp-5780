@@ -10,9 +10,15 @@ using namespace std;
 class Test {
 public:
     int x;
-    Test(int x): x(x) {cout<<"c "<<x<< endl;}
+    Test(int x)  {this->x=x; cout<<"c "<<x<< endl;}
     ~Test() {cout<<"d "<<x << endl;}
 };
+
+/* Option
+Test::~Test() {
+    cout<<"d "<<x << endl;
+}
+*/
 
 Test f () {
     return Test(99);    
@@ -33,14 +39,18 @@ int main() {
     {
         Test list0(5);
         cout << "in scope" << endl;
+        //Test* p = &list0;
+        //delete p;
     }
     cout << "2" << endl;
+    delete plist;
+
+    cout << "3" << endl;
     Test t(555);
     t = f();
-    cout << "3" << endl;
-    g(Test(67));
     cout << "4" << endl;
+    g(Test(67));
+    cout << "5" << endl;
     cout << h().x << endl;
     Test array[5] {11, 22, 33, 44, 55};
-    delete plist;
 }

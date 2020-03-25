@@ -22,7 +22,7 @@ int main() {
     cout << "Before loop" << endl;
     this_thread::sleep_for(chrono::seconds(TIME));
 
-    //IntList* p;
+    IntList* p = new IntList(10);
     for (uint i=0; i<5; ++i) {
         cout << "Before list construction" << endl;
         this_thread::sleep_for(chrono::seconds(TIME));
@@ -42,7 +42,6 @@ int main() {
     cout << "After loop" << endl;
     this_thread::sleep_for(chrono::seconds(TIME));
 
-    //IntList* listArray = new IntList[10];
-    //vector<int>* a = new vector<int>[10];
+    IntList* listArray = new IntList[10] {100,100,100,100,100,100,100,100,100,100};
     return 0;
 }

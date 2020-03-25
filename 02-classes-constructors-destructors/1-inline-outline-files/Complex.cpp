@@ -10,6 +10,7 @@ Complex::Complex(double re, double im) {
     this->im = im; 
 }   
 
+
 // "outline" method implementation:
 Complex Complex::sum(Complex b) {  
     return Complex(re+b.re, im+b.im);
