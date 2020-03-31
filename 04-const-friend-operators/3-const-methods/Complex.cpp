@@ -19,13 +19,14 @@ public:
             //this++; // compile error
         }
 
+
     double real() const {  // getter
         //_im = 7;  // compile error
         cout << "real const" << endl;
         return _re;
     }
 
-    double& real() {       // setter and getter
+    double& real()  {       // setter and getter
         cout << "real non-const" << endl;
         return _re;
     }
@@ -38,7 +39,6 @@ public:
         return std::to_string(_re)+"+"+std::to_string(_im)+"i";
     }
 };
-
 
 int main() {
     Complex a;

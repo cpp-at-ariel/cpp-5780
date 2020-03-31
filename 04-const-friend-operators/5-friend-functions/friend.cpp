@@ -16,6 +16,8 @@ public:
 	void print1(ostream& out) const;                      // member method
 	friend void print2(ostream& out, const MyClass& obj); // friend function
 	friend void set(int i, MyClass& obj);
+
+	static void print4(ostream& out, const MyClass& obj); // static function
 };
 
 void set(int i, MyClass& obj) {
@@ -31,14 +33,22 @@ void print2(ostream& out, const MyClass& obj) {
 	//obj.myField =6;
 }
 
+
 // void print3(ostream& out, const MyClass& obj) {
-// 	out << obj.myField << endl;
+//  	out << obj.myField << endl;
 // }
+
+
+void MyClass::print4(ostream& out, const MyClass& obj) {
+	out << obj.myField << endl;
+	//obj.myField =6;
+}
 
 int main() {
 	const MyClass obj;
 	obj.print1(cout);
 	print2(cerr, obj);
+	MyClass::print4(cerr, obj);
 	// obj.print2(cerr);
 	return 0;
 }
