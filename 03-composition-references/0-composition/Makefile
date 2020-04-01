@@ -18,8 +18,8 @@ endif
 
 MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
 
-SOURCES=$(shell ls units/*.cpp) $(MAIN)
-HEADERS=$(shell ls units/*.h*)
+SOURCES=$(wildcard units/*.cpp) $(MAIN)
+HEADERS=$(wildcard units/*.h*)
 
 run: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)
