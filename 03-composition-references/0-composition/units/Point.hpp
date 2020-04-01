@@ -16,7 +16,8 @@ class Point {
     void setY(int);
     string to_string();
 
-    Point(): x(9), y(9) { }
+    Point() //: x(9), y(9) 
+    { }
     //Point() { x=y=9; }
 
     Point(int z): Point(z,z) {}

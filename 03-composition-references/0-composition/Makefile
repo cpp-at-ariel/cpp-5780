@@ -8,9 +8,9 @@
 # Based on https://stackoverflow.com/a/2481326/827927
 # AUTHOR: Erel Segal-Halevi
 
-CXX=clang++-5.0
+CXX=clang++-9
 RM=rm -f
-CPPFLAGS=-std=c++17 
+CPPFLAGS=-std=c++2a
 
 ifndef MAIN
   MAIN=./main.cpp

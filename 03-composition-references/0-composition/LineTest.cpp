@@ -11,5 +11,7 @@ int main() {
     cout << "l1=" << l1.to_string() << endl;
     Line l2(5,6,7,8);
     cout << "l2=" << l2.to_string() << endl;
+    Line l3(Point(11,12));
+    cout << "l3=" << l3.to_string() << endl;
     return 0;
 }

@@ -25,22 +25,21 @@ void set(int i, MyClass& obj) {
 }
 
 void MyClass::print1(ostream& out)  const {
-	out << myField << endl;
+	out << "print1: " << myField << endl;
 }
 
 void print2(ostream& out, const MyClass& obj) {
-	out << obj.myField << endl;
-	//obj.myField =6;
+	out << "print2: " << obj.myField << endl;
 }
 
 
 // void print3(ostream& out, const MyClass& obj) {
-//  	out << obj.myField << endl;
+//   	out << "print3: " << obj.myField << endl;
 // }
 
 
 void MyClass::print4(ostream& out, const MyClass& obj) {
-	out << obj.myField << endl;
+	out << "print4: " << obj.myField << endl;
 	//obj.myField =6;
 }
 

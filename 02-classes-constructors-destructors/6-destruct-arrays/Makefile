@@ -18,7 +18,7 @@ ifndef MAIN
   MAIN=./main.cpp
 endif
 
-MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
+MAINEXECUTABLE=$(subst .cpp,.exe,$(MAIN))
 
 SOURCES=$(shell ls units/*.cpp) $(MAIN)
 HEADERS=$(shell ls units/*.h*)
@@ -31,3 +31,7 @@ $(MAINEXECUTABLE): $(SOURCES) $(HEADERS)
 
 clean:
 	$(RM) *.exe a.out
+
+echo:
+	echo $(SOURCES)
+	echo $(HEADERS)

@@ -10,9 +10,13 @@ class Line
 		Point p1, p2;
 	public:
 		Line()
+		: p1{0,0}, p2{0,0}
 		//: p1{}, p2{}  // automatic
 		{ 
-	
+			// p1.setX(0);
+			// p1.setY(0);
+			// p2.setX(0);
+			// p2.setY(0);
 		}
 		Line(int xy1, int xy2): 
 			p1{xy1}, p2{xy2}

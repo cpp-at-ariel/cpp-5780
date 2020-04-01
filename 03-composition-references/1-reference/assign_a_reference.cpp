@@ -12,14 +12,14 @@ void test(const int& x) {
 }
 
 int main() {
-    test(1);
+    //test(1);
     // under the hood:
     // const int& x = 1;
 
     int* p1;
     //int& r1; // compile error
 
-    const int num = 1, num2 = 999;
+    int num = 1, num2 = 999;
 
     cout << "Pointer:" << endl;
     int* pnum = &num;
