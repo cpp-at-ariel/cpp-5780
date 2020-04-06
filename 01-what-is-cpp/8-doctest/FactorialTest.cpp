@@ -8,8 +8,13 @@ TEST_CASE("Factorials of small numbers") {
     CHECK(factorial(3) == 6);
 }
 
+
 TEST_CASE("Factorials of large numbers") {
     CHECK(factorial(10) == 3628800);
+
+    auto f3 = factorial(3);
+    CHECK((f3==5 || f3==6)); // logic OR requires parentheses!
+
     /* add more checks here */
 }
 
