@@ -6,6 +6,7 @@
  */
 
 #include "Complex.hpp"
+
 using namespace std;
 
 //----------------------------------------
@@ -24,8 +25,8 @@ bool operator==(const Complex& c1, const Complex& c2) {
 }
 
 bool operator!=(const Complex& c1, const Complex& c2) {
-    // return ( (c1._re!=c2._re) || (c1._im!=c2._im) );
-    // return (!(c1==c2));
+    //return ( (c1._re!=c2._re) || (c1._im!=c2._im) );
+    //return (!(c1==c2));
     return ( abs(c1._re-c2._re)>0.0001 || abs(c1._im-c2._im)>0.0001 );
 }
 
@@ -80,7 +81,7 @@ istream& operator>> (istream& input, Complex& c) {
     ios::pos_type startPosition = input.tellg();
 
     if ( (!(input >> new_re))                 ||
-         (!getAndCheckNextCharIs(input,'+')) ||
+         (!getAndCheckNextCharIs(input,'+'))  ||
          (!(input >> new_im))                 ||
          (!(getAndCheckNextCharIs(input,'i'))) ) {
 

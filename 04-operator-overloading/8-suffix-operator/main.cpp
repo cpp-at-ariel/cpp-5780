@@ -35,7 +35,7 @@ public:
 	}
     friend ostream& operator<< (ostream& os, const Complex& c);
     friend const Complex operator+ (const Complex& c1, const Complex& c2);
-	friend const Complex operator+(int r, const Complex& c2);
+	friend const Complex operator+ (int r, const Complex& c2);
 };
 
 

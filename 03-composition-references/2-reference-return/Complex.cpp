@@ -14,7 +14,7 @@ class Complex {
 public:
     Complex() {  _re = _im  = 0; }    // inline constructor
 
-    Complex& setReal(double r) { 
+    Complex setReal(double r) { 
         _re = r; 
         return *this;
     }
@@ -40,9 +40,37 @@ int main() {
     Complex a;
     cout << a.to_string() << endl;
     a.setReal(1).setImag(2);
-    cout << a.to_string() << endl;
+    cout << a.to_string() << endl; // should print "1 + 2i"
     Complex b = a;
     a.add(Complex().setReal(3).setImag(4)).add(b);
     cout << a.to_string() << endl;
     return 0;
 }
+
+
+// When setReal returns Complex&:
+//
+// Initial memory:
+//    a: re=0 im=0
+//
+// Memory after setReal:
+//    a: re=1 im=0
+//
+// Final memory:
+//    a: re=1 im=2
+
+
+// When setReal returns Complex:
+//
+// Initial memory:
+//    a: re=0 im=0
+//
+// Memory after setReal:
+//      a: re=1 im=0
+// a-copy: re=1 im=0
+//
+// Final memory:
+//      a: re=1 im=0
+// a-copy: re=1 im=2
+//
+

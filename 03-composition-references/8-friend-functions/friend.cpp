@@ -25,17 +25,19 @@ void set(int i, MyClass& obj) {
 }
 
 void MyClass::print1(ostream& out)  const {
+	out << this << endl;
 	out << "print1: " << myField << endl;
 }
 
+void print3(ostream& out, const MyClass& obj) {
+   	out << "print3: " << obj.myField << endl;
+}
+
 void print2(ostream& out, const MyClass& obj) {
+	//cout << this << endl;
 	out << "print2: " << obj.myField << endl;
 }
 
-
-// void print3(ostream& out, const MyClass& obj) {
-//   	out << "print3: " << obj.myField << endl;
-// }
 
 
 void MyClass::print4(ostream& out, const MyClass& obj) {
@@ -49,5 +51,13 @@ int main() {
 	print2(cerr, obj);
 	MyClass::print4(cerr, obj);
 	// obj.print2(cerr);
+
+	int i=5;
+	int* j = &i;
+	cout << (*j) << endl;
+
+	int& r = i;
+	cout << r << endl;
+	
 	return 0;
 }

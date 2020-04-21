@@ -33,6 +33,7 @@ string operator+(string a, string b) {
     // return result;
 
     return std::operator+(b,a);
+    //return "555";
 }
 
 /* Compiler error: 
@@ -55,9 +56,9 @@ ostream& operator<< (ostream& os, string s) {
 // }
 
 int main() {
-    int i=5;
-    cout << ((i--)-i) << endl;
-    return 0;
+    //int i=5;
+    //cout << ((i--)-i) << endl;
+    //return 0;
 
     string x="abc", y="def";
     
@@ -69,11 +70,11 @@ int main() {
     cout << "3 * (x + y) = " << 3 * (x + y) << endl;
     cout << "3 * x + y = " << 3 * x + y << endl;
 
-    cout << (x * 3) << endl;
+    cout << "x * 3 = " << (x * 3) << endl;
 
-    cout << (!x) << endl;
+    cout << "!x = " << (!x) << endl;
 
-    // x = "";
+    //x = "";
     if (!x) {
         cout << "x is empty" << endl;
     } else {
