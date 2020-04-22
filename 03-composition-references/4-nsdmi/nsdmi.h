@@ -40,11 +40,17 @@ public:
 	}
 
 //	How ever this one causes memory leakage.
-//	stack(size_t size)  //
-//	{
-//		size_ = size;
-//		elements_ = new T[size];
-//	}
+/*
+	stack(size_t size)  //
+	{
+		size_ = size;
+		elements_ = new T[size];
+	}
+*/
+
+	~stack() {
+		delete[] elements_;
+	}
 
 
 	bool empty() const

@@ -46,21 +46,21 @@ public:
     //----------------------------------
     // unary operator
     //----------------------------------
-    // the const on the return type is to
-    // avoid -c1= c10 from working
-    const Complex operator-() const {
-        return Complex(-_re , -_im);
-        // Complex result;
-        // result._re = _re;
-        // result._im = _im;
-        // return result;
-        // int a = 5;
-        // cout << -a << endl;
-    }
 
     // Logical NOT
     bool operator!() const {
         return _re==0 && _im==0;
+    }
+
+    // the const on the return type is to
+    // avoid -c1 = c10 from working
+    const Complex operator-() const {
+        return Complex(-_re , -_im);
+        // longer version:
+        //Complex result;
+        //result._re = -_re;
+        //result._im = -_im;
+        //return result;
     }
 
     //----------------------------------------

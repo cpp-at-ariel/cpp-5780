@@ -28,7 +28,8 @@ int main(int argc, char **argv) {
     Complex minus_c1 = -c1;
     cout << "-c1 = " << (-c1) << endl;
 
-    c1 << cout;
+    c1 += c2;
+    cout << "c1 = " << c1 << " !!" << endl;
 
     cout << boolalpha << (c1 ^ c2) << endl;
     cout << boolalpha << (c1 ^ Complex{1,2}) << endl;
@@ -41,7 +42,7 @@ int main(int argc, char **argv) {
     // cout << c1++++ << endl;
     cout << "c1 + c2 = " << (c1 + c2) << endl;
     cout << "c1 = " << c1 << endl;
-    cout << "c1 += c2 = " << (c1 += c2) << endl;
+    //cout << "c1 += c2 = " << (c1 += c2) << endl;
     cout << "c1 = " << c1 << endl << endl;
     cout << "c1 += c2 += c2 += c2 = " << (c1 += c2 += c2 += c2 += c2) << endl;
     // Complex c9 = c1+c2;
@@ -57,7 +58,8 @@ int main(int argc, char **argv) {
     // cout << "c1 = ";
     // cout << c1;
     // cout << endl;
-    // c1 << cout;
+    cout << "c1 << cout:" << endl;
+    //c1 << cout;
 
     cout << "-c1 = " << -c1 << endl;
     cout << "c1 = " << c1 << endl;
@@ -133,38 +135,44 @@ int main(int argc, char **argv) {
             cout << "Error! Wrong format!" << endl;
         }
         cout << "After:  c1 = " << c1<<endl << endl;
-    }
+    } else {
 
-    cout << "Reading a complex number from a file:" << endl;
-    cout << "Before: c2 = " << c2<<endl;
-    fstream fin("inputs/ok1.txt");
-    if (!fin) {
-         cerr << "File " << argv[1] << " not open" << endl;
-         return 1;
-    }
-    fin >> c2;
-    if (!fin) {
-         if (fin.bad()) {
-             cout << "Fatal error with stream, quiting" << endl;
-             return 1;
-         }
-         cout << "Error in format. You inserted: " << endl;
-         char c;
-         fin.clear();
-         while (fin >> c) {
-             cout << c;
-         }
-         cout << endl;
-         return 1;
-    }
-    cout << "After:  c2 = " << c2 << endl << endl;
+        cout << "Reading a complex number from a file:" << endl;
+        cout << "Before: c2 = " << c2<<endl;
+        fstream fin("inputs/w2.txt");
+        if (!fin) {
+            cerr << "File " << argv[1] << " not open" << endl;
+            return 1;
+        }
+        fin >> c2;
+        if (!fin) {
+            if (fin.bad()) {
+                cout << "Fatal error with stream, quiting" << endl;
+                return 1;
+            }
+            cout << "Error in format. You inserted: " << endl;
+            char c;
+            fin.clear();
+            while (fin >> c) {
+                cout << c;
+            }
+            cout << endl;
+            cout << "After:  c2 = " << c2 << endl << endl;
+        }
 
-    cout << "Reading a complex number from a string:" << endl;
-    cout << "Before: c3 = " << c3<<endl;
-    istringstream sinput("6+8i");
-    sinput >> c3;
-    cout << "After:  c3 = " << c3 << endl << endl;
+        cout << "Reading a complex number from a string:" << endl;
+        cout << "Before: c3 = " << c3<<endl;
+        istringstream sinput("6+li");
+        sinput >> c3;
+        if (!sinput) {
+            cout << "Format error!" << endl;
+        }
+        cout << "After:  c3 = " << c3 << endl << endl;
 
+        ostringstream soutput;
+        soutput << (c1 + c2);
+        assert (soutput.str()=="91+2i");
+    }
     return 0;
 
 }

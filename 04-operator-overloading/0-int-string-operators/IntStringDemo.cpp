@@ -11,8 +11,8 @@ using namespace std;
 // int operator*(int a, int b) { return 0; }
 
 string operator* (int n, string s){ 
-    string result = s;
-    for (int i=1; i<n; ++i)
+    string result = "";
+    for (int i=0; i<n; ++i)
         result += s;
     return result;
 }
@@ -28,9 +28,9 @@ bool operator!(string s) {
 string operator+(string a, string b) {
 //    return b+a;   // segmentation fault - stack overflow!
 
-    // string result = b;
-    // result += a;
-    // return result;
+//    string result = b;
+//    result += a;
+//    return result;
 
     return std::operator+(b,a);
     //return "555";
@@ -65,6 +65,7 @@ int main() {
     cout << "3 * y  = " << 3 * y << endl;
     //Equivalent to: 
     // cout << operator*(3,y) << endl;
+    cout << "0 * y  = " << 0 * y << endl;
 
     cout << "x + y = " << (x+y) << endl;  // defined here: https://gcc.gnu.org/onlinedocs/gcc-4.6.2/libstdc++/api/a01075_source.html
     cout << "3 * (x + y) = " << 3 * (x + y) << endl;
