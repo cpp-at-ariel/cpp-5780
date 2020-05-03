@@ -7,7 +7,12 @@ int sqr(int x) {
 Line::Line(int x1,int y1,int x2,int y2):
  	p1{sqr(x1),sqr(y1)},
 	p2{x2,y2}
-{}
+{
+	// p1.setX(x1);
+	// p1.setY(y1);
+	// p2.setX(x2);
+	// p2.setY(y2);
+}
 
 
 

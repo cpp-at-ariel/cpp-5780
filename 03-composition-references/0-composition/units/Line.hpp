@@ -18,13 +18,14 @@ class Line
 			// p2.setX(0);
 			// p2.setY(0);
 		}
+
 		Line(int xy1, int xy2): 
 			p1{xy1}, p2{xy2}
 			{ 
 
 				
 			}
-		Line(int x1,int y1,int x2,int y2);
+		Line(int x1=0,int y1=0,int x2=0,int y2=0);
 
 		Line(Point new_p1): p1(new_p1) {}
 		
