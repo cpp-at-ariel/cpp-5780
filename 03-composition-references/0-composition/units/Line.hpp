@@ -25,7 +25,7 @@ class Line
 
 				
 			}
-		Line(int x1=0,int y1=0,int x2=0,int y2=0);
+		Line(int x1,int y1,int x2,int y2);
 
 		Line(Point new_p1): p1(new_p1) {}
 		
