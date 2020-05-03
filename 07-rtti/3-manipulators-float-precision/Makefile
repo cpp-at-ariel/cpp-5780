@@ -1,6 +1,10 @@
 #!make -f
-CXX=clang++-5.0
-CXXFLAGS=-std=c++17 -Wunused-comparison
+
+CXX=clang++-9
+CXXFLAGS=-std=c++2a -Wunused-comparison
+RM=rm -f
+
+
 
 ifndef MAIN
   MAIN=./main.cpp

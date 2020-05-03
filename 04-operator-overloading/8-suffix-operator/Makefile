@@ -3,8 +3,8 @@
 # AUTHOR: Erel Segal-Halevi
 
 CXX=clang++-9
+CXXFLAGS=-std=c++2a 
 RM=rm -f
-CPPFLAGS=-std=c++2a
 
 ifndef MAIN
   MAIN=./main.cpp
@@ -18,7 +18,7 @@ all: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)
 
 $(MAINEXECUTABLE): $(SOURCES) $(HEADERS)
-	$(CXX) $(CPPFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
 
 clean:
 	$(RM) *.exe a.out *.class
