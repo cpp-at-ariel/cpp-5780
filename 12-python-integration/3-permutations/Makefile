@@ -2,9 +2,9 @@
 #
 # AUTHOR: Erel Segal-Halevi
 
-CXX=clang++-5.0
+CXX=clang++-9
+CXXFLAGS=-std=c++2a -O3 -ffp-contract=off -fno-expensive-optimizations
 RM=rm -f
-CPPFLAGS=-std=c++17 -O3 -ffp-contract=off -fno-expensive-optimizations
 
 ifndef MAIN
   MAIN=./main.cpp
@@ -18,7 +18,7 @@ all: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)
 
 $(MAINEXECUTABLE): $(SOURCES) $(HEADERS)
-	$(CXX) $(CPPFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
+	$(CXX) $(CXXFLAGS) $(SOURCES) -o $(MAINEXECUTABLE)
 
 clean:
 	$(RM) *.exe a.out *.class

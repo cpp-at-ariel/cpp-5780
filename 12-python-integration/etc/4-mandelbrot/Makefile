@@ -2,9 +2,9 @@
 #
 # AUTHOR: Erel Segal-Halevi
 
-CXX=clang++-5.0
+CXX=clang++-9
+CPPFLAGS=-std=c++2a -O3 -ffp-contract=off -fno-expensive-optimizations
 RM=rm -f
-CPPFLAGS=-std=c++17 -O3 -ffp-contract=off -fno-expensive-optimizations
 
 ifndef MAIN
   MAIN=./main.cpp
