@@ -33,9 +33,9 @@ public:
 
 	friend ostream& operator<<(ostream& os, const Fraction& frac);
 	// friend Fraction sqrt(const Fraction& f);
-	friend const Fraction operator+ (const Fraction& a, const Fraction& other);
+	friend Fraction operator+ (const Fraction& a, const Fraction& other);
 
-	const Fraction operator- (const Fraction& other) const {
+	Fraction operator- (const Fraction& other) const {
 		int nn = nom * other.den -
 			den * other.nom;
 		int dd = den * other.den;
@@ -43,7 +43,7 @@ public:
 	}
 };
 
-const Fraction operator+ (const Fraction& a, const Fraction& other) {
+Fraction operator+ (const Fraction& a, const Fraction& other) {
 	int nn = a.nom * other.den +
 		a.den * other.nom;
 	int dd = a.den * other.den;
@@ -65,20 +65,23 @@ int main() {
 	Fraction f1 {1, 4};
 	cout << "f1 = " << f1 << endl;
 
+	// Explicit conversion from double to fraction:
 	double d1 {f1};
 	// equivalent to: 
 	// double d1 (f1);
 	// double d1 = f1;
 	cout << "d1 = " << d1 << endl;
+
+	// Implicit conversion from double to fraction:
 	// cout << "sqrt(f1) = " << sqrt(f1) << endl;
 	// cout << "std::sqrt(f1) = " << std::sqrt(f1) << endl;
 	// cout << "sin(f1) = " << sin(f1) << endl;
 
 	Fraction f2 {2};  // explicit - will work even if constructor is explicit.	
 	Fraction f3 (3);  // explicit - will work even if constructor is explicit.
-	Fraction f4 = 4;  // implicit - won't work if constructor is explicit.
+	//Fraction f4 = 4;  // implicit - won't work if constructor is explicit.
 
-	Fraction farray[5] {2,3,4,5,6};  // 5 times implicit constructor
+	//Fraction farray[5] {2,3,4,5,6};  // 5 times implicit constructor
 	// Fraction farray[5] (2,3,4,5,6);  // does not compile
 
 	cout << "f2 = " << f2 << endl;
@@ -88,9 +91,8 @@ int main() {
 	cout << "f1+2 = " << (f1 + 2) << endl;   // ambiguous! implicit conversion
 	cout << "2+f1 = " << (2 + f1) << endl;   // ambiguous! implicit conversion
 
-	cout << "f1-2 = " << (f1 - 2) << endl;   // ambiguous! implicit conversion
-	// cout << "2-f1 = " << (2 - f1) << endl;   // ambiguous! implicit conversion
-
+	cout << "f1-2 = " << (f1 - 2) << endl;   
+	//cout << "2-f1 = " << (2 - f1) << endl;   
 
 	return 0;
 }

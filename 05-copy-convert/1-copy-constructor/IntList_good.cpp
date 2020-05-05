@@ -29,7 +29,7 @@ class IntList {
 
 
         IntList(const IntList& other): 
-        // IntList(IntList other): 
+        //IntList(IntList other): 
             IntList(other.numInts) 
         {
             cout << "copy constructor doing deep copy" << endl;
@@ -103,9 +103,9 @@ int main() {
     cout << "list1[5] = " << list1[5] << endl << endl;
     cout << "---" << endl;
 
-    IntList list2 {list1};     // calls copy ctor
+    //IntList list2 {list1};     // calls copy ctor
     // IntList list2 (list1);  // calls copy ctor
-    // IntList list2 = list1;  // calls copy ctor
+    IntList list2 = list1;  // calls copy ctor
     cout << "list1[5] = " << list1[5] << endl;
     cout << "list2[5] = " << list2[5] << endl;
     list2 = 2;

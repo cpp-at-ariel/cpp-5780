@@ -15,6 +15,31 @@ using namespace std;
 int main(int argc, char **argv) {
     cout << "Complex Demo" << endl;
 
+    Complex c1(1,2);
+    Complex c2(2,3);
+    Complex c3(3,4);
+
+    (c1 += c2) += c3;  // c1 SHOULD get the sum c1+c2+c3 = 6+9i
+    // If we return Complex& (by reference), this is equivalent to:
+    // c1 += c2;              // c1 = 3 + 5i;
+    // Complex& c_temp = c1;  // c_temp = c1 = 3 + 5i
+    // c1 += c3;              // c1 = c_temp = 6 + 9i
+
+    // If we return Complex (by value), this is equivalent to:
+    // c1 += c2;              // c1 = 3 + 5i;
+    // Complex c_temp = c1;   // c_temp = 3 + 5i
+    // c_temp += c3;          // c_temp = 6 + 9i
+
+    cout << "c1=" << c1 << "   c2=" << c2 << "  c3=" << c3 << endl;
+
+    (c1 + c2) + c3;
+    // Equivalent to:
+    // Complex c_temp_1 = c1 + c2;
+    // Complex c_temp_2 = c_temp_1 + c3;
+
+
+
+/*
     // auto a = Complex(3,2)+Complex(4,3);
     // cout << "type of a: " << typeid(a).name() << endl;
 
@@ -174,5 +199,6 @@ int main(int argc, char **argv) {
         assert (soutput.str()=="91+2i");
     }
     return 0;
+    */
 
 }
