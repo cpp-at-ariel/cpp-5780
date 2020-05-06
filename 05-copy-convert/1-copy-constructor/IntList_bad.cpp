@@ -46,6 +46,7 @@ class IntList {
  *    the compiler will call the DEFAULT copy ctor
  */
 int sum(IntList list) {
+    cout << "INSIDE sum: &list = " << &list << endl;
     int result=0;
     for (int i=0; i<list.size(); ++i) {
         result += list[i];
@@ -60,6 +61,7 @@ int main() {
     cout << "list1[5] = " << list1[5] << endl;
     list1 = 1;
     cout << "list1[5] = " << list1[5] << endl << endl;
+    cout << "OUTSIDE sum: &list1 = " << &list1 << endl;
     cout << "sum(list1) = " << sum(list1) << endl;
     cout << "list1[5] = " << list1[5] << endl << endl;
     cout << "---" << endl;

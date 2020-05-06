@@ -29,7 +29,7 @@ protected:
 	int _vari;
 };
 
-class Derived : private Base
+class Derived : public Base
 {
 public:
 	Derived(): _otherObj(), _myObj() { cout << "Derived::default\n"; }
@@ -46,8 +46,17 @@ int main()
 {
 	cout << "---" << endl;
 	Derived d1;
+	
+	d1.vari();
+	// equivalent to:
+	d1.Base::vari();
+
+	Base b3 = d1;   // slicing
+	// equivalent to:
+	b3 = (Base)d1;
+
 	// cout << d1._vari << endl;
-	cout << d1.vari() << endl;
+	//cout << d1.vari() << endl;
 	cout << d1.vari2() << endl;
 	cout << "---" << endl;
 	Derived d2(6, 8);

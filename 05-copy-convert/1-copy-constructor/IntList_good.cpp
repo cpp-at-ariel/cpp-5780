@@ -89,7 +89,7 @@ int sum(const IntList& list) {
     for (int i=0; i<list.size(); ++i) {
         result += list[i];
     }
-    // list[5] = 88;
+    //list[5] = 88;
     return result;
 }
 
@@ -104,7 +104,7 @@ int main() {
     cout << "---" << endl;
 
     //IntList list2 {list1};     // calls copy ctor
-    // IntList list2 (list1);  // calls copy ctor
+    //IntList list2 (list1);  // calls copy ctor
     IntList list2 = list1;  // calls copy ctor
     cout << "list1[5] = " << list1[5] << endl;
     cout << "list2[5] = " << list2[5] << endl;
@@ -114,7 +114,7 @@ int main() {
 
     IntList list3{20};
     list3 = list1;   // operator=
-    // list3(list1);   // operator()
+    //list3(list1);   // operator()
     cout << "list1[5] = " << list1[5] << endl;
     cout << "list3[5] = " << list3[5] << endl;
     list3 = 3;
@@ -126,6 +126,9 @@ int main() {
 
     cout << "chaining assignments: "<<endl;
     list3 = list2 = list1;
+    // Equivalent to:
+    // list2 = list1;
+    // list3 = list2;
 
     cout << "---" << endl;
     IntList list4 = list2 = list1;
