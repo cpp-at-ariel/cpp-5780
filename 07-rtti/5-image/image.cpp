@@ -42,8 +42,8 @@ int main() {
   ///image processing
   ///
   // imageFile.write(&image, 3*dimx*dimy);
-  // imageFile.write((char*)(&image), 3*dimx*dimy);
-  imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
+  imageFile.write((char*)(&image), 3*dimx*dimy);
+  //imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
   imageFile.close();
   return 0;
 }

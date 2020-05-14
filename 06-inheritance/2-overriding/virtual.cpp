@@ -32,7 +32,7 @@ class Derived : public Base
 public:
 	Derived() { }
 	Derived(int i, int j) : _myObj(0), Base(i), _varj(j) {  }
-	void output(ostream& out) {  // This method is automatically virtual
+	void output(ostream& out) const {  // This method is automatically virtual
 		Base::output(out);
 		out << " Derived:" << _varj;
 	}

@@ -33,11 +33,11 @@ void printlargenums() {
 
 
 int main() {
-    double huge1 = 1e302;
-    double huge2 = huge1 + 99999999999999;
-    cout << huge2-huge1 << endl;
+    // double huge1 = 1e302;
+    // double huge2 = huge1 + 99999999999999;
+    // cout << huge2-huge1 << endl;
 
-    cout << true << boolalpha << " " << true << endl;
+    // cout << true << boolalpha << " " << true << endl;
 
 
     cout << 1234.5678 << endl;
@@ -47,8 +47,10 @@ int main() {
          << 1234.5678 << endl
          << 12345678. << endl;
 
-    cout << setprecision(100)  << 1234.5678 << endl << 12345678. << endl;
-
+    cout << setprecision(100)
+         << 1234.5678 << endl
+         << 12345678. << endl;
+        
     cout << "default: " << endl; 
     printsmallnums(); printlargenums(); printxyz();
     for (int i=0; i<10; ++i) {

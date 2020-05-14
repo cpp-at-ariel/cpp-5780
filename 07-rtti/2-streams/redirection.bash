@@ -1,6 +1,6 @@
 #!bash
 
-clang++-5.0 --std=c++17 redirection.cpp -o redirection.exe
+clang++-9 --std=c++2a redirection.cpp -o redirection.exe
 
 echo ---
 ./redirection.exe  
@@ -9,5 +9,5 @@ echo ---
 echo ---
 ./redirection.exe 2> err.txt
 echo ---
-./redirection.exe > out.txt 2> err.txt
+./redirection.exe 1> out.txt 2> err.txt
 echo ---

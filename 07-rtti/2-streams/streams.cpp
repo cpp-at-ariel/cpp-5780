@@ -52,6 +52,8 @@ int main() {
 	cout << "tellg before: " << (sinout.tellg()) << endl;
 	sinout >> i >> a >> j;
 	cout << "state after: " << (sinout.rdstate()) << endl;
+	cout << (sinout? "good": "bad") << endl;
+	cout << (!sinout? "bad": "good") << endl;
 	sinout.clear();
 	cout << "tellg after: " << (sinout.tellg()) << endl;
 	// if (!sinout) throw runtime_error("bad input");
