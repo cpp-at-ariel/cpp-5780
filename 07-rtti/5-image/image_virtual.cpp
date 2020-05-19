@@ -14,13 +14,11 @@ using namespace std;
 
 struct RGB {
   uint8_t red, green, blue;
-public:
   virtual void draw() {}
   // virtual ~RGB() {}
   RGB(): red(0), green(0), blue(0) {}
   RGB(uint8_t red, uint8_t green, uint8_t blue): red(red), green(green), blue(blue) {}
 };
-
 
 
 int main() {

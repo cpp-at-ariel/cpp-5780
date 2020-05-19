@@ -24,6 +24,7 @@ struct Derived2: public Base2 {
 	int a[100000];
 	Derived2() { a[50000] = 50000; }
 	void print() { cout << i << " " << c << endl; }
+	//Derived2(Base2 theBase): Base2(theBase) { cout << "Conversion constructor" << endl;}
 };
 struct Derived2c: public Base2 {
 	char c='c';
@@ -81,7 +82,10 @@ int main()
 		Base2* bp2a = new Derived2;
 		Base2* bp2c = new Derived2c;
 
+		//Derived2 dp5 = *bp2a;
+
 		if (Derived2* dp2a = dynamic_cast<Derived2*>(bp2a)) {
+			Derived2 dp5 = *dp2a;
 			cout << "bp2a points to a Derived2! a[50000]=" << dp2a->a[50000] << endl;
 		} else {
 			cout << "bp2a does NOT point to a Derived2! " << endl;
@@ -91,11 +95,11 @@ int main()
 		} else {
 			cout << "bp2b does NOT point to a Derived2! " << endl;
 		}
-		if (Derived2* dp2b = (Derived2*)(bp2c)) {
-			cout << "bp2b points to a Derived2! a[50000]=" << dp2b->a[50000] << endl;
-		} else {
-			cout << "bp2b does NOT point to a Derived2! " << endl;
-		}
+		// if (Derived2* dp2b = (Derived2*)(bp2c)) {
+		// 	cout << "bp2b points to a Derived2! a[50000]=" << dp2b->a[50000] << endl;
+		// } else {
+		// 	cout << "bp2b does NOT point to a Derived2! " << endl;
+		// }
 	}
 	{
 		Base1* bp1a = new Derived1;
