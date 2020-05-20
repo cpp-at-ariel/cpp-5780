@@ -23,15 +23,17 @@ public:
 
 int main() {
   const int dimx = 800, dimy = 800;
-  ofstream imageFile("cpp.ppm", ios::out | ios::binary);
+  ofstream imageFile("image_ptr.ppm", ios::out | ios::binary);
   imageFile << "P6" << endl << dimx <<" " << dimy << endl << 255 << endl;
   RGB* image[dimx*dimy];
   for (int j = 0; j < dimy; ++j)  {  // row
     for (int i = 0; i < dimx; ++i) { // column
+      int ii = (i*256/800);
+      int jj = (j*256/800);
       image[dimx*j+i] = new RGB{};
-      image[dimx*j+i]->red = (i % 256);
-      image[dimx*j+i]->green = (j % 256);
-      image[dimx*j+i]->blue = ( (i*i+j*j) % 256);
+      image[dimx*j+i]->red = (ii % 256);
+      image[dimx*j+i]->green = (jj % 256);
+      image[dimx*j+i]->blue = ( (ii*ii+jj*jj) % 256);
     }
   }
   // image[0].red = 255;
@@ -40,9 +42,24 @@ int main() {
   ///
   ///image processing
   ///
+  cout << image[0] << endl;
   // imageFile.write(&image, 3*dimx*dimy);
   imageFile.write((char*)(&image), 3*dimx*dimy);
   // imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);
+
+  // for (int j = 0; j < dimy; ++j)  {  // row
+  //   for (int i = 0; i < dimx; ++i) { // column
+  //     imageFile.write((char*)(image[dimx*j+i]), 3);
+  //   }
+  // }
+
   imageFile.close();
+
+
+  for (int j = 0; j < dimy; ++j)  {  // row
+    for (int i = 0; i < dimx; ++i) { // column
+      delete image[dimx*j+i];
+    }
+  }
   return 0;
 }
