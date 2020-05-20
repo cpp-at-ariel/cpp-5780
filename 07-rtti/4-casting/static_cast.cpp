@@ -2,13 +2,13 @@
 using namespace std;
 
 
-struct Base {
+struct Shape {
 	int i=555;
 	int j;
 	void print() { cout << i << endl; }
 };
 
-struct Derived: public Base {
+struct Circle: public Shape {
 	float f=56.78;
 	void print() { cout << i << " " << f << endl; }
 };
@@ -31,33 +31,33 @@ int main()
 		double f = static_cast<double>(i);
 		cout << e << " " << f << endl;
 
-		double* dp = &d;
-		int* ip = (int*)dp;
-		//int* jp = static_cast<int*>(dp); // compiler error: "static_cast from 'double *' to 'int *' is not allowed"
+		double* pcircle = &d;
+		int* ip = (int*)pcircle;
+		//int* jp = static_cast<int*>(pcircle); // compiler error: "static_cast from 'double *' to 'int *' is not allowed"
 		cout << *ip << " " << endl;        // garbage
 	}
 
 	{
-		Base b;
-		Derived d;
-		//d = static_cast<Derived>(b); // compile error
-		b = static_cast<Base>(d); // OK
+		Shape shape1;
+		Circle circle1;
+		//circle1 = static_cast<Circle>(shape1); // compile error
+		shape1 = static_cast<Shape>(circle1); // OK
 
-		Base* bp;
-		Derived* dp;
-		Unrelated* up;
+		Shape* pshape;
+		Circle* pcircle;
+		Unrelated* punrelated;
 
-		bp = static_cast<Base*>(new Derived);
-		//bp = static_cast<Base*>(new Unrelated);  // compile error
-		bp->print();
+		pshape = static_cast<Shape*>(new Circle);
+		//pshape = static_cast<Shape*>(new Unrelated);  // compile error
+		pshape->print();
 
-		dp = static_cast<Derived*>(bp);  //  OK
-		dp->print();
-		dp = static_cast<Derived*>(new Base);  //  Garbage
-		dp->print();
-		//dp = static_cast<Derived*>(new Unrelated);  // compile error
+		pcircle = static_cast<Circle*>(pshape);  //  OK
+		pcircle->print();
+		pcircle = static_cast<Circle*>(new Shape);  //  Garbage
+		pcircle->print();
+		//pcircle = static_cast<Circle*>(new Unrelated);  // compile error
 
-		//up = static_cast<Unrelated*>(new Base); // compile error
-		//up = static_cast<Unrelated*>(new Derived); // compile error
+		//punrelated = static_cast<Unrelated*>(new Shape); // compile error
+		//punrelated = static_cast<Unrelated*>(new Circle); // compile error
 	}
 }

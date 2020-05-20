@@ -1,35 +1,36 @@
 #include <iostream>
 using namespace std;
 
-
-struct Base1 {
+struct Shape1 {
 	int i=111;
 	void print() { cout << i << endl; }
 };
-struct Derived1: public Base1 {
+struct Circle1: public Shape1 {
 	char c='a';
 	void print() { cout << i << " " << c << endl; }
 };
-struct Derived1d: public Base1 {
+struct Square1: public Shape1 {
 	char c='d';
 	void print() { cout << i << " " << c << endl; }
 };
 
-struct Base2 {
+
+struct Shape2 {
 	double i=222;
 	virtual void print() { cout << i << endl; }
 };
-struct Derived2: public Base2 {
+struct Circle2: public Shape2 {
 	char c='b';
 	int a[100000];
-	Derived2() { a[50000] = 50000; }
+	Circle2() { a[50000] = 50000; }
 	void print() { cout << i << " " << c << endl; }
-	//Derived2(Base2 theBase): Base2(theBase) { cout << "Conversion constructor" << endl;}
+	//Circle2(Shape2 theBase): Shape2(theBase) { cout << "Conversion constructor" << endl;}
 };
-struct Derived2c: public Base2 {
+struct Square2: public Shape2 {
 	char c='c';
 	void print() { cout << i << " " << c << endl; }
 };
+
 
 
 int main()
@@ -51,64 +52,64 @@ int main()
 	{
 		// Dynamic cast with pointers
 
-		Base1* bp1;
-		Derived1* dp1;
-		Base2* bp2;
-		Derived2* dp2;
+		Shape1* bp1;
+		Circle1* dp1;
+		Shape2* bp2;
+		Circle2* dp2;
 
-		// bp1 = dynamic_cast<Base1*>(new Derived1);    // OK, like static_cast
-		bp1 = new Derived1;    // OK, like static_cast
-		Base1* bp1b = new Derived1d;
+		bp1 = dynamic_cast<Shape1*>(new Circle1);    // OK, like static_cast
+		bp1 = new Circle1;    // OK, like static_cast
+		Shape1* bp1b = new Square1;
 
 		cout << "bp1 = " << bp1 << endl;
 		bp1->print();
-		//dp1 = dynamic_cast<Derived1*>(new Base1);    // compile error: 'Base1' is not polymorphic
+		//dp1 = dynamic_cast<Circle1*>(new Shape1);    // compile error: 'Shape1' is not polymorphic
 		//cout << "dp1 = " << dp1 << endl;
 		//dp1->print();
 
-		bp2 = new Derived2;    
+		bp2 = new Circle2;    
 		cout << "bp2 = " << bp2 << endl;
 		bp2->print();
-		dp2 = dynamic_cast<Derived2*>(new Base2);    // OK, returns null
+		dp2 = dynamic_cast<Circle2*>(new Shape2);    // OK, returns null
 		cout << "dp2 = " << dp2 << endl;
 		//dp2->print();   // segmentation fault
 
-		bp1 = dynamic_cast<Base1*>(new Base2);    // OK, returns null
+		bp1 = dynamic_cast<Shape1*>(new Shape2);    // OK, returns null
 		cout << "bp1 = " << bp1 << endl;
-		dp1 = dynamic_cast<Derived1*>(new Base2);    // OK, returns null
+		dp1 = dynamic_cast<Circle1*>(new Shape2);    // OK, returns null
 		cout << "dp1 = " << dp2 << endl;
 
 		// How to implement instanceof in C++?
-		Base2* bp2a = new Derived2;
-		Base2* bp2c = new Derived2c;
+		Shape2* bp2a = new Circle2;
+		Shape2* bp2c = new Square2;
 
-		//Derived2 dp5 = *bp2a;
+		//Circle2 dp5 = *bp2a;
 
-		if (Derived2* dp2a = dynamic_cast<Derived2*>(bp2a)) {
-			Derived2 dp5 = *dp2a;
-			cout << "bp2a points to a Derived2! a[50000]=" << dp2a->a[50000] << endl;
+		if (Circle2* dp2a = dynamic_cast<Circle2*>(bp2a)) {
+			cout << "bp2a points to a Circle2! a[50000]=" << dp2a->a[50000] << endl;
 		} else {
-			cout << "bp2a does NOT point to a Derived2! " << endl;
+			cout << "bp2a does NOT point to a Circle2! " << endl;
 		}
-		if (Derived2* dp2b = dynamic_cast<Derived2*>(bp2c)) {
-			cout << "bp2b points to a Derived2! a[50000]=" << dp2b->a[50000] << endl;
+		if (Circle2* dp2b = dynamic_cast<Circle2*>(bp2c)) {
+			cout << "bp2b points to a Circle2! a[50000]=" << dp2b->a[50000] << endl;
 		} else {
-			cout << "bp2b does NOT point to a Derived2! " << endl;
+			cout << "bp2b does NOT point to a Circle2! " << endl;
 		}
-		// if (Derived2* dp2b = (Derived2*)(bp2c)) {
-		// 	cout << "bp2b points to a Derived2! a[50000]=" << dp2b->a[50000] << endl;
+		// if (Circle2* dp2b = reinterpret_cast<Circle2*>(bp2c)) {
+		// if (Circle2* dp2b = (Circle2*)(bp2c)) {
+		// 	cout << "bp2b points to a Circle2! a[50000]=" << dp2b->a[50000] << endl;
 		// } else {
-		// 	cout << "bp2b does NOT point to a Derived2! " << endl;
+		// 	cout << "bp2b does NOT point to a Circle2! " << endl;
 		// }
 	}
 	{
-		Base1* bp1a = new Derived1;
-		Base1* bp1b = new Base1;
+		Shape1* bp1a = new Circle1;
+		Shape1* bp1b = new Shape1;
 
-		// if (Derived1* dp1a = dynamic_cast<Derived1*>(bp1a)) {
-		// 	cout << "bp1a points to a Derived1! " << endl;
+		// if (Circle1* dp1a = dynamic_cast<Circle1*>(bp1a)) {
+		// 	cout << "bp1a points to a Circle1! " << endl;
 		// } else {
-		// 	cout << "bp1a does NOT point to a Derived1! " << endl;
+		// 	cout << "bp1a does NOT point to a Circle1! " << endl;
 		// }
 	}
 
@@ -116,35 +117,35 @@ int main()
 		// Dynamic cast with references
 
 		
-		Base1& bp1 = dynamic_cast<Base1&>(*new Derived1);    // OK, like static_cast
+		Shape1& bp1 = dynamic_cast<Shape1&>(*new Circle1);    // OK, like static_cast
 		bp1.print();
-		// Derived1& dp1 = dynamic_cast<Derived1&>(*new Base1);    // compile error: 'Base1' is not polymorphic
-		Base2& bp2 = dynamic_cast<Base2&>(*new Derived2);    // OK, like static_cast
+		// Circle1& dp1 = dynamic_cast<Circle1&>(*new Shape1);    // compile error: 'Shape1' is not polymorphic
+		Shape2& bp2 = dynamic_cast<Shape2&>(*new Circle2);    // OK, like static_cast
 		bp2.print();
 
-		//Derived2& dp2 = dynamic_cast<Derived2&>(*new Base2);    // Runtime error: std::bad_cast
+		//Circle2& dp2 = dynamic_cast<Circle2&>(*new Shape2);    // Runtime error: std::bad_cast
 		//dp2.print();
 
-		// bp1 = dynamic_cast<Base1*>(new Base2);    // OK, returns null
+		// bp1 = dynamic_cast<Shape1*>(new Shape2);    // OK, returns null
 		// cout << "bp1 = " << bp1 << endl;
-		// dp1 = dynamic_cast<Derived1*>(new Base2);    // OK, returns null
+		// dp1 = dynamic_cast<Circle1*>(new Shape2);    // OK, returns null
 		// cout << "dp1 = " << dp2 << endl;
 
 		// How to implement instanceof in C++?
-		Base2& bp2a = *new Derived2;
-		Base2& bp2b = *new Base2;
+		Shape2& bp2a = *new Circle2;
+		Shape2& bp2b = *new Shape2;
 
 		try {
-			Derived2& dp2a = dynamic_cast<Derived2&>(bp2a);
-			cout << "bp2a references a Derived2! " << endl;
+			Circle2& dp2a = dynamic_cast<Circle2&>(bp2a);
+			cout << "bp2a references a Circle2! " << endl;
 		} catch (bad_cast e) {
-			cout << "bp2a does NOT reference a Derived2! " << endl;
+			cout << "bp2a does NOT reference a Circle2! " << endl;
 		}
 		try {
-			Derived2& dp2b = dynamic_cast<Derived2&>(bp2b);
-			cout << "bp2b references a Derived2! " << endl;
+			Circle2& dp2b = dynamic_cast<Circle2&>(bp2b);
+			cout << "bp2b references a Circle2! " << endl;
 		} catch (bad_cast e) {
-			cout << "bp2b does NOT reference a Derived2! " << endl;
+			cout << "bp2b does NOT reference a Circle2! " << endl;
 		}
 	}
 }

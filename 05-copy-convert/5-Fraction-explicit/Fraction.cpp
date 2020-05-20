@@ -81,7 +81,7 @@ int main() {
 	Fraction f3 (3);  // explicit - will work even if constructor is explicit.
 	//Fraction f4 = 4;  // implicit - won't work if constructor is explicit.
 
-	// double d = static_cast<double>(f1);
+	//double d = static_cast<double>(f1);
 	// cout << "d = " << d << endl;
 
 	//Fraction farray[5] {2,3,4,5,6};  // 5 times implicit constructor

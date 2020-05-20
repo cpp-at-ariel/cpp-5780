@@ -1,13 +1,14 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 
-struct Base {
+struct Shape {
 	int i=555;
 	void print() { cout << i << endl; }
 };
 
-struct Derived: public Base {
+struct Circle: public Shape {
 	char c='a';
 	void print() { cout << i << " " << c << endl; }
 };
@@ -17,20 +18,21 @@ struct Unrelated {
 	void print() { cout << d << endl; }
 };
 
+/*
+struct char8 {
+	char c[8];
+};
+*/
 
 int main()
 {	
-	Base* b11 = new Base;
-	Derived* d11 = (Derived*)b11;
-	// cout << d11->i << " " << d11->c << endl;
-	//return 0;
 	{
-		int i=5;
+		int i=5;   // 10100000 00000000 00000000 00000000 ???????? ???????? ???????? ????????
 
 		int* ip = &i;
 		double* dp = (double*)ip;
 		double* ep = reinterpret_cast<double*>(ip);
-		cout << *dp << " " << *ep << endl;        // garbage garbage
+		cout << setprecision(100) << *dp << " " << *ep << endl;        // garbage garbage
 
 		int* jp = reinterpret_cast<int*>(ep);
 		cout << *ip << " " << *jp << endl;        // garbage garbage
@@ -43,33 +45,33 @@ int main()
 	}
 
 	{
-		Base b;
-		Derived d;
-		//d = reinterpret_cast<Derived>(b); // compile error
-		//b = reinterpret_cast<Base>(d); //compile error
+		Shape shape1;
+		Circle circle1;
+		//d = reinterpret_cast<Circle>(b); // compile error
+		//b = reinterpret_cast<Shape>(d); //compile error
 
-		Base* bp;
-		Derived* dp;
-		Unrelated* up;
+		Shape* pshape;
+		Circle* pcircle;
+		Unrelated* punrelated;
 
-		bp = reinterpret_cast<Base*>(new Derived);
-		bp->print();  // OK
-		bp = reinterpret_cast<Base*>(new Unrelated);
-		bp->print();  // garbage
+		pshape = reinterpret_cast<Shape*>(new Circle);
+		pshape->print();  // OK
+		pshape = reinterpret_cast<Shape*>(new Unrelated);
+		pshape->print();  // garbage
 
 		cout << "---" << endl;
 
-		dp = reinterpret_cast<Derived*>(bp);  //  same garbage
-		dp->print();
-		dp = reinterpret_cast<Derived*>(new Base);  //  555 garbage
-		dp->print();
-		dp = reinterpret_cast<Derived*>(new Unrelated);  // garbage
-		dp->print();
+		pcircle = reinterpret_cast<Circle*>(pshape);  //  same garbage
+		pcircle->print();
+		pcircle = reinterpret_cast<Circle*>(new Shape);  //  555 garbage
+		pcircle->print();
+		pcircle = reinterpret_cast<Circle*>(new Unrelated);  // garbage
+		pcircle->print();
 		cout << "---" << endl;
 
-		up = reinterpret_cast<Unrelated*>(new Base); // garbage
-		up->print();
-		up = reinterpret_cast<Unrelated*>(new Derived); // garbage
-		up->print();
+		punrelated = reinterpret_cast<Unrelated*>(new Shape); // garbage
+		punrelated->print();
+		punrelated = reinterpret_cast<Unrelated*>(new Circle); // garbage
+		punrelated->print();
 	}
 }

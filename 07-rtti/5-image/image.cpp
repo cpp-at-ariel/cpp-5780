@@ -41,8 +41,8 @@ int main() {
   //imageFile.write(&image, 3*dimx*dimy);         // compile error
   //imageFile << image;
   //compressedImage = compress(image);
-  imageFile.write((char*)(&image), 3*dimx*dimy);   // fine
-  //imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);  // fine
+  //imageFile.write((char*)(&image), 3*dimx*dimy);   // fine
+  imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);  // fine
   imageFile.close();
   return 0;
 }
