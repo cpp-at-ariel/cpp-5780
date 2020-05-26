@@ -55,7 +55,7 @@ int main() {
 		Shape2* pc2 = new Circle2;
 		cout << (typeid(ps2)==typeid(pc2)) << endl;     // true - both are Shape1*
 		cout << (typeid(*ps2)==typeid(*pc2)) << endl;   // false - Shape2 is not Circle2 - they are polymorphic
-		cout << (typeid(ps2)==typeid(Shape2)) << endl;  // false - ps1 is Shape1* and not Shape1
+		cout << (typeid(ps2)==typeid(Shape2)) << endl;  // false - it is Shape2* and not Shape2
 		cout << (typeid(ps2)==typeid(Shape2*)) << endl;  // true
 		cout << (typeid(*ps2)==typeid(Shape2)) << endl;  // true
 		cout << (typeid(*pc2)==typeid(Shape2)) << endl;  // false - since it is polymorphic
