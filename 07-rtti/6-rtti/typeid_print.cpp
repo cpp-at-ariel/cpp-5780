@@ -3,6 +3,38 @@
 #include <fstream>
 using namespace std;
 
+
+struct Shape1 {
+	int i=111;
+	void print() { cout << i << endl; }
+};
+struct Circle1: public Shape1 {
+	char c='a';
+	void print() { cout << i << " " << c << endl; }
+};
+struct Square1: public Shape1 {
+	char c='d';
+	void print() { cout << i << " " << c << endl; }
+};
+
+
+struct Shape2 {
+	double i=222;
+	virtual void print() { cout << i << endl; }
+};
+struct Circle2: public Shape2 {
+	char c='b';
+	int a[100000];
+	Circle2() { a[50000] = 50000; }
+	void print() { cout << i << " " << c << endl; }
+	//Circle2(Shape2 theBase): Shape2(theBase) { cout << "Conversion constructor" << endl;}
+};
+struct Square2: public Shape2 {
+	char c='c';
+	void print() { cout << i << " " << c << endl; }
+};
+
+
 int main()
 {	
 	{
@@ -19,19 +51,19 @@ int main()
 	}
 
 	{
-		Base1* bp1 = new Base1;
+		Shape1* bp1 = new Shape1;
 		cout << "typeid(bp1) = " << typeid(bp1).name() << endl;
 		cout << "typeid(*bp1) = " << typeid(*bp1).name() << endl;
 
-		bp1 = new Derived1;
+		bp1 = new Circle1;
 		cout << "typeid(bp1) = " << typeid(bp1).name() << endl;
 		cout << "typeid(*bp1) = " << typeid(*bp1).name() << endl;
 		
-		Base2* bp2 = new Base2;
+		Shape2* bp2 = new Shape2;
 		cout << "typeid(bp2) = " << typeid(bp2).name() << endl;
 		cout << "typeid(*bp2) = " << typeid(*bp2).name() << endl;
 
-		bp2 = new Derived2;
+		bp2 = new Circle2;
 		cout << "typeid(bp2) = " << typeid(bp2).name() << endl;
 		cout << "typeid(*bp2) = " << typeid(*bp2).name() << endl;
 		
