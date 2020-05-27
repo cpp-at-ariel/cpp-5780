@@ -10,11 +10,15 @@ using std::cout;
 using std::endl;
 using std::string;
 
-template<typename T>
-T sum (T a, T b) {
+template<typename T, typename R>
+T sum (T a, R b) {
 	//f(a);  // compilation error
 	return a+b;
 }
+
+// int sum_char_pointer(const char* a, const char* b) {
+// 	return a+b;
+// }
 
 // int sum_int(int a, int b) {
 // 	f(a);
@@ -47,7 +51,7 @@ int main() {
 	cout << sum(5,6) << endl;
 	cout << sum(5.0,6.2)  << endl;
 	cout << sum(string("abc"),string("def")) << endl;
-	//cout << sum("abc","def") << endl;
+	cout << sum("abc","def") << endl;
 	{
 		int a=4,b=5;
 		cout << a << " " << b << endl;
