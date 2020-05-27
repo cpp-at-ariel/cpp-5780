@@ -12,8 +12,14 @@ using std::string;
 
 template<typename T>
 T sum (T a, T b) {
+	//f(a);  // compilation error
 	return a+b;
 }
+
+// int sum_int(int a, int b) {
+// 	f(a);
+// 	return a+b;
+// }
 
 template <typename T> void swap(T& a, T& b) {
 	cout << "swap Ts" << endl;
@@ -35,10 +41,13 @@ public:
 	DontCopyMe(const DontCopyMe& other) = delete;
 };
 
+
+
 int main() {
 	cout << sum(5,6) << endl;
 	cout << sum(5.0,6.2)  << endl;
-	cout << sum(string("abc"),string("def"));
+	cout << sum(string("abc"),string("def")) << endl;
+	//cout << sum("abc","def") << endl;
 	{
 		int a=4,b=5;
 		cout << a << " " << b << endl;
@@ -62,6 +71,6 @@ int main() {
 
 	{
 		DontCopyMe a, b;
-		//swap(a,b);     // compiler error
+		swap(a,b);     // compiler error
 	}
 }

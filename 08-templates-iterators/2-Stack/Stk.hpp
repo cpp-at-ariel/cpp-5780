@@ -77,12 +77,12 @@ public:
 	class iterator {
 
 	  private:
-		Node* m_pointer;
+		Node* pointer_to_current_node;
 
 	public:
 
 		iterator(Node* ptr = nullptr)
-			: m_pointer(ptr) {
+			: pointer_to_current_node(ptr) {
 		}
 
 		// Note that the method is const as this operator does not
@@ -91,16 +91,18 @@ public:
 		// A const_iterator class will return const T&
 		// and the method will still be const
 		T& operator*() const {
-			return m_pointer->m_value;
+			//return *pointer_to_current_node;
+			return pointer_to_current_node->m_value;
 		}
 
 		T* operator->() const {
-			return &(m_pointer->m_value);
+			return &(pointer_to_current_node->m_value);
 		}
 
 		// ++i;
 		iterator& operator++() {
-			m_pointer= m_pointer->m_next;
+			//++pointer_to_current_node;
+			pointer_to_current_node = pointer_to_current_node->m_next;
 			return *this;
 		}
 
@@ -108,16 +110,16 @@ public:
 		// Usually iterators are passed by value and not by const& as they are small.
 		const iterator operator++(int) {
 			iterator tmp= *this;
-			m_pointer= m_pointer->m_next;
+			pointer_to_current_node= pointer_to_current_node->m_next;
 			return tmp;
 		}
 
 		bool operator==(const iterator& rhs) const {
-			return m_pointer == rhs.m_pointer;
+			return pointer_to_current_node == rhs.pointer_to_current_node;
 		}
 
 		bool operator!=(const iterator& rhs) const {
-			return m_pointer != rhs.m_pointer;
+			return pointer_to_current_node != rhs.pointer_to_current_node;
 		}
 	};  // END OF CLASS ITERATOR
 
