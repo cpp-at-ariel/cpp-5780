@@ -13,6 +13,7 @@ endif
 MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
 
 SOURCES=$(MAIN)
+HEADERS=derivative.hpp rgb.hpp sincos.hpp
 
 all: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)

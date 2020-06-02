@@ -1,18 +1,20 @@
 /**
  * Template for numerically calculating the n-th derivative.
  * 
- * Author: Peter GottSinCoshling
+ * Author: Peter Gottschling
  * Url: https://github.com/petergottschling/discovering_modern_cpp/blob/master/c%2B%2B11/derivative.cpp
  */
 
 #include "derivative.hpp"
 #include "rgb.hpp"
+#include "sincos.hpp"
 #include <boost/lambda/lambda.hpp>
 
 using boost::lambda::_1;
 
-int main() 
-{
+
+
+int main()  {
     using namespace std;
 
 	Picture pic(300,300);
@@ -30,13 +32,13 @@ int main()
         // _1 * _1 * _1 / 3 + 1;
         //[](double x) {return std::abs(x);};
 
-    auto derivativeOfBase = derive(baseFunction, 0.001);
+    auto derivativeOfBase = derivative(baseFunction, 0.001);
         // represents the function x^2
 
 
 	pic.plot(baseFunction, -7.0,7.0,1200,  -2.1,2.1, {0,0,255});
-    pic.plot(derive(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {0,128,0});
-    // pic.plot(derive(derive(baseFunction,0.001),0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
+    pic.plot(derivative(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {0,128,0});
+    pic.plot(derivative(derivative(baseFunction,0.001),0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
     pic.plot(make_nth_derivative<2>(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
     pic.plot(make_nth_derivative<3>(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,255});
 
