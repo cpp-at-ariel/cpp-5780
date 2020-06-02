@@ -24,8 +24,8 @@ template<>    struct is_numeric<double>  {
 
 template<typename T> T add(T a, T b) {
     static_assert(is_numeric<T>::value, 
-	 	"Can only be numeric type");
-	// assert(is_numeric<T>::value); 
+	 	"Can only be numeric type");  // Creates a compile-time error
+	// assert(is_numeric<T>::value);  // Creates a run-time error
 	return a+b;
 }
 
@@ -35,10 +35,10 @@ class A {
 
 int main() {
 	cout << boolalpha;
-    cout << is_numeric<int>::value << '\n';
-    cout << add(5,6) << '\n';
-	cout << is_numeric<char>::value << '\n'; 
-	float f;
-	add(f,f);
+    cout << is_numeric<int>::value << endl;
+    cout << add(1,2) << '\n';
+	cout << is_numeric<char>::value << endl;
+	double f = 1.2;
+	cout << add(f,f) << endl;
     // cout << add('a','b') << '\n';
 }
