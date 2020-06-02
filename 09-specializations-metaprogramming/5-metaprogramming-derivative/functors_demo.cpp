@@ -24,9 +24,13 @@ struct Constant {
 	}
 };
 
+struct S {};
+
 int main() {
 	Picture pic(300,300);
 	pic.setBackground({255,255,0});
+
+	//pic.plot(S{}, -4.0,4.0,5000,  -1.1,1.1, {0,0,0});
 
 	pic.plot(twox, -4.0,4.0,5000,  -1.1,1.1, {0,0,0});
 

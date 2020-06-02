@@ -83,12 +83,11 @@ std::ostream& operator<<(std::ostream& os, const vector<T>& v) {
  */
 class bool_reference {
   private:
-    unsigned char& byte;
-    unsigned char  mask;
+    uint8_t& byte;
+    uint8_t  mask;
     
   public:
-    bool_reference(unsigned char& containing_byte, 
-      int bit_index): 
+    bool_reference(uint8_t& containing_byte, int bit_index): 
       byte(containing_byte), 
       mask(1 << bit_index) {}
 
@@ -120,8 +119,45 @@ class vector<bool> {
   
     bool operator[](int i) const { 
       check_index(i);
-      return (data[i/8] >> i%8) & 1; 
+      return (data[i/8] >> i%8) & 1;
     }
+    // EXAMPLE:
+    // i = 10
+    // i%8 = 2
+    //
+    // 10101010 10000?00
+    // 10000?00
+    //
+    // >> 2:
+    //   10000?
+    //
+    //   & 1:
+    // 00000001
+    //
+    //   00000?
+
+
+  /* Does not work: 
+    bool& operator[](int i) { 
+      check_index(i);
+      bool b = (data[i/8] >> i%8) & 1;
+      return b;
+      // b = true;
+    }
+  */
+
+    void set(int i, bool b) { 
+      check_index(i);
+      uint8_t mask = (1 << (i%8));
+      if (b) {
+        data[i/8] |= mask;
+      } else {
+        data[i/8] &= (~mask);
+      }
+    }
+
+  
+
 
     bool_reference operator[](int i) { 
       check_index(i);
@@ -135,7 +171,11 @@ class vector<bool> {
 };
 
 
-
+/* Example to understand the compiler error:
+int& f() {
+  return 3;
+}
+*/
 
 
 int main() {
@@ -154,6 +194,10 @@ int main() {
 
 
     vector<bool>  b(13);
+    b[0] = true;  // equivalent to:
+    // bool_reference br = b[0];
+    // br = true;
+
     for (int i= 0; i < 13; i++)
 		  b[i] = i % 3;
     std::cout << "b = " << b << std::endl;

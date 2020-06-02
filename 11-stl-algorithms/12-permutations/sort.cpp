@@ -16,10 +16,10 @@ using namespace std;
 
 
 int main() {
-	vector<int> v{19,18,16,17,14,15,12,10,13,11};       // OK
+	vector<int> v{19,18,16,17,14,15,12,10,13,11};   // OK
 	// deque<int> v{9,8,6,7,4,5,2,0,3,1};      // OK
 	// array<int,10> v{9,8,6,7,4,5,2,0,3,1};   // OK
-	// int v[10] {9,8,6,7,4,5,2,0,3,1};       // OK
+	// int v[10] {9,8,6,7,4,5,2,0,3,1};        // OK
 	// list<int> v{9,8,6,7,4,5,2,0,3,1};       // ERROR - invalid operands to binary expression ('std::_List_iterator<int>' and 'std::_List_iterator<int>')
 	cout << "unsorted: " << v << endl;
 

@@ -38,7 +38,7 @@ int main()  {
 
 	pic.plot(baseFunction, -7.0,7.0,1200,  -2.1,2.1, {0,0,255});
     pic.plot(derivative(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {0,128,0});
-    pic.plot(derivative(derivative(baseFunction,0.001),0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
+    //pic.plot(derivative(derivative(baseFunction,0.001),0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
     pic.plot(make_nth_derivative<2>(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,0});
     pic.plot(make_nth_derivative<3>(baseFunction,0.001), -7.0,7.0,1200,  -2.1,2.1, {255,0,255});
 

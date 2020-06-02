@@ -35,10 +35,13 @@ class A {
 
 int main() {
 	cout << boolalpha;
+
     cout << is_numeric<int>::value << endl;
     cout << add(1,2) << '\n';
-	cout << is_numeric<char>::value << endl;
+
 	double f = 1.2;
 	cout << add(f,f) << endl;
-    // cout << add('a','b') << '\n';
+
+	cout << is_numeric<char>::value << endl;
+    cout << add('a','b') << '\n';
 }

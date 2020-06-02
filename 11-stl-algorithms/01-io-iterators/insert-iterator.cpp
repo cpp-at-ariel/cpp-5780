@@ -33,7 +33,6 @@ int main() {
 	*siter = 3;
 	cout << "s: " << s << endl;
 
-	
 	// example of copy + inserter:
 	// (copy vector to set - get rid of duplicates, and sort by value):
 	vector<int> v1 {1,7,3,5,1,3};

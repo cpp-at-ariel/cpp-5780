@@ -16,6 +16,11 @@ void myswap(Data& a, Data& b) {
 	b= tmp;
 }
 
+Buffer<double> buffer1(1,000,000);
+Buffer<double> buffer2(1,000,000);
+myswap(buffer1, buffer2);
+
+
 template<typename T>
 class Buffer {
 
@@ -53,7 +58,6 @@ public:
 		_buf(new T[other.size()]),
 		_size(other.size())	{
 		copyVals(other);
-
 	}
 
 	~Buffer() {
@@ -71,6 +75,7 @@ public:
 		}
 		return *this;
 	}
+
 	//---------------------------------------------------------
 
 	//---------------------------------------------------------
@@ -116,7 +121,7 @@ public:
 	void efficient_swap(Buffer& other) {
 		myswap(_buf, other._buf);
 		myswap(_size, other._size);
-	} 
+	}
 	
 };
 
