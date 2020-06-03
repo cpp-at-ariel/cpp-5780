@@ -32,10 +32,10 @@ struct Picture {
 		imageFile.close();
 	}
 	
-	template<typename Function> 
+	template<typename T> 
 	void plot(
-		Function f, // Must have operator() (double)
-		double fromX, double toX, int stepsX, 
+		T f, // Must have operator() (double)
+		double fromX, double toX, int stepsX,
 		double fromY, double toY,
 		RGB color) {
 
@@ -48,5 +48,22 @@ struct Picture {
 				at(row,col) = color;
 		}
 	}
+
+	// template<typename T> 
+	// void plot_derivative(
+	// 	T f, // Must have operator() (double)
+	// 	double fromX, double toX, int stepsX,
+	// 	double fromY, double toY,
+	// 	RGB color, double h) {
+
+	// 	double stepX = (toX - fromX)/stepsX;
+	// 	for (double x=fromX; x<=toX; x+=stepX) {
+	// 		double y = derivative_at_point(f,x,h);  ///
+	// 		int col = (x-fromX)/(toX-fromX)*dimx;
+	// 		int row = (y-fromY)/(toY-fromY)*dimy;
+	// 		if (col>=0 && col<dimx && row>=0 && row<dimy)
+	// 			at(row,col) = color;
+	// 	}
+	// }
 
 };

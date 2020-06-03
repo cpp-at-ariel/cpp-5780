@@ -10,18 +10,18 @@
 #include <iostream>
 
 
-template <typename Function> 
-double derivative_at_point(Function f, double x, double h) {
+template <typename Functor> 
+double derivative_at_point(Functor f, double x, double h) {
     return ( f(x+h) - f(x) ) / h;
 }
 
-template <typename Function>
+template <typename Functor>
 class derivative {
   private:
     double          h;
-    const Function& f;
+    const Functor& f;
   public:
-    derivative(const Function& f, double h):  f(f), h(h)  {}
+    derivative(const Functor& f, double h):  f(f), h(h)  {}
 
     double operator()(double x) const {
 	    return derivative_at_point(f, x, h);
@@ -29,13 +29,13 @@ class derivative {
 };
 
 
-template <unsigned N, typename Function> class nth_derivative {
+template <unsigned N, typename Functor> class nth_derivative {
   private:
      double h;
-     nth_derivative<N-1,Function> prev_derivative;   // (N-1)-th derivative of f
+     nth_derivative<N-1,Functor> prev_derivative;   // (N-1)-th derivative of f
         
   public:
-     nth_derivative(const Function& f, double h): 
+     nth_derivative(const Functor& f, double h): 
         h(h), 
         prev_derivative(f, h) {}
 
@@ -47,10 +47,10 @@ template <unsigned N, typename Function> class nth_derivative {
 
 
 
-template <typename Function> class nth_derivative<1, Function>: public derivative<Function> {
+template <typename Functor> class nth_derivative<1, Functor>: public derivative<Functor> {
   //using derivative<Function>::derivative;  // use the base-class constructor. We could also  use:
   public:
-     nth_derivative(const Function& f, const  double& h) : derivative<Function>(f, h) {}
+     nth_derivative(const Functor& f, const  double& h) : derivative<Functor>(f, h) {}
 };
 
 

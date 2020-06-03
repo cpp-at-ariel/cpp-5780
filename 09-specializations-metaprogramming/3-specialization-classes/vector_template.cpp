@@ -92,7 +92,13 @@ class bool_reference {
       mask(1 << bit_index) {}
 
     operator bool() const { 
-      return byte & mask; 
+      return ((byte & mask) == 0? false: true); 
+      // EXAMPLE: byte = 0b10101?10
+      // bit_index = 2
+      // mask          = 0b00000100
+      // byte & mask   = 0b00000?00
+      // (bit=false: byte&mask = 0)
+      // (bit=true: byte&mask != 0)
     }
 
     bool_reference& operator=(bool b) { 
@@ -100,7 +106,7 @@ class bool_reference {
             byte |= mask;
         else // b==false
             byte &= ~mask;
-        return *this; 
+        return *this;
     }
 
 };
@@ -123,6 +129,7 @@ class vector<bool> {
     }
     // EXAMPLE:
     // i = 10
+    // i/8 = 1
     // i%8 = 2
     //
     // 10101010 10000?00
@@ -136,27 +143,37 @@ class vector<bool> {
     //
     //   00000?
 
+    // Does not work (1):
+    // bool& operator[](int i) { 
+    //   check_index(i);
+    //   return (data[i/8] >> i%8) & 1;
+    // }
 
-  /* Does not work: 
-    bool& operator[](int i) { 
-      check_index(i);
-      bool b = (data[i/8] >> i%8) & 1;
-      return b;
-      // b = true;
-    }
-  */
+    // Does not work (2): 
+    // bool& operator[](int i) { 
+    //   check_index(i);
+    //   bool b = (data[i/8] >> i%8) & 1;
+    //   return b;
+    //   //return data[i/8];
+    // }
 
     void set(int i, bool b) { 
       check_index(i);
-      uint8_t mask = (1 << (i%8));
+      uint8_t mask = (0b00000001 << (i%8));
+      // EXAMPLE: i =1 0, i%8 == 2,
+      // 1 << 2  == 0b00000100 = 4
       if (b) {
-        data[i/8] |= mask;
+        data[i/8] = data[i/8] | mask;
       } else {
-        data[i/8] &= (~mask);
+        data[i/8] = data[i/8] & (~mask);
       }
     }
 
-  
+    // Does not work (3): 
+    // bool& operator[](int i, bool b) { 
+    //   set(i,b);
+    // }
+
 
 
     bool_reference operator[](int i) { 
@@ -171,11 +188,11 @@ class vector<bool> {
 };
 
 
-/* Example to understand the compiler error:
-int& f() {
-  return 3;
-}
-*/
+/* Example to understand the compiler error: */
+// int& f() {
+//   return 3+4;
+// }
+
 
 
 int main() {
@@ -194,9 +211,12 @@ int main() {
 
 
     vector<bool>  b(13);
-    b[0] = true;  // equivalent to:
-    // bool_reference br = b[0];
-    // br = true;
+    b[10] = true;  // equivalent to:
+    // bool_reference br = b.operator[](10)
+    // br.operator=(true);
+    bool b10 = b[10]; // equivalent to:
+    // bool_reference br = b.operator[](10)
+    // b10 = br.operator bool();
 
     for (int i= 0; i < 13; i++)
 		  b[i] = i % 3;
