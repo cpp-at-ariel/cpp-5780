@@ -1,6 +1,6 @@
 #include <iostream>
 #include <new>
-#include<array>
+#include <array>
 #include "musician.h"
 
 

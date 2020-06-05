@@ -44,14 +44,17 @@ ostream& operator<< (ostream& out, basic_string<int> s) {
 }
 
 int main() {
+	auto t = tuple(5,'a', 6.7);
+	cout << get<0>(t) << " " << get<1>(t) << " " << get<2>(t) << endl;
+
 	auto f = f_automatic_both; // f is a pointer to function
 	auto [ii,cc,ss] = f();
 	// Equivalent to:
 
 	// auto tt = f();
-	// auto ii = std::get<0>(tt);
-	// auto cc = std::get<1>(tt);
-	// auto ss = std::get<2>(tt);
+	// auto ii = get<0>(tt);
+	// auto cc = get<1>(tt);
+	// auto ss = get<2>(tt);
 
 	cout << ii << " " << cc << " " << ss << endl;
 
