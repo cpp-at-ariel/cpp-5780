@@ -70,30 +70,12 @@ struct smartPointer{
 //};
 
 
-
-const static int MAX_MUCIANS = 20;
-void playMusic (int numMusicians); // throw (TooNoisy)
-
-int main ()
-{
-
-	cout << "Enter required number of musicans in band" << endl;
-	int numMusicans;
-	cin>> numMusicans;
-	try
-	{
-		playMusic(numMusicans);
-	}
-	catch (TooNoisy& noisy) 
-	{
-		cout << endl << endl << "It is too noisy here! " << noisy.getNumMusicians() << " musicians are playing concurrently! Stop Playing!" << endl << endl;
-	}
-}
+const static int MAX_MUSICIANS = 20;
 
 void playMusic (int numMusicians) // throw (TooNoisy)
 {	
-	Musician* band [MAX_MUCIANS];
-	//smartPointer<Musician> band [MAX_MUCIANS];
+	Musician* band [MAX_MUSICIANS];
+	//smartPointer<Musician> band [MAX_MUSICIANS];
 
 	for (int i = 0; i < numMusicians; ++i)
 			band[i] = new Musician;								
@@ -105,5 +87,14 @@ void playMusic (int numMusicians) // throw (TooNoisy)
 
 	for (int i = 0; i < numMusicians; ++i)
 		delete band[i];
+}
 
+
+int main () {
+	int numMusicans = 7;
+	try	{
+		playMusic(numMusicans);
+	} catch (TooNoisy& noisy) {
+		cout << endl << endl << "It is too noisy here! " << noisy.getNumMusicians() << " musicians are playing concurrently! Stop Playing!" << endl << endl;
+	}
 }
