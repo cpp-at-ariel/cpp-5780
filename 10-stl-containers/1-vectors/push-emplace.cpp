@@ -38,7 +38,7 @@ int main() {
 	// v1.push_back(9);
 	cout << "emplace_back above capacity: " << endl;
 	v1.emplace_back(9);
-	cout << "size=" << v1.size() << " capacity=" << v1.capacity() << endl;
+	cout << "size=" << v1.size() << " capacity=" << v1.capacity() << endl << endl;
 	// v1[6]    = MyClass{5,6};  // bug
 	// v1.at(6) = MyClass{7,7};  // exception
 

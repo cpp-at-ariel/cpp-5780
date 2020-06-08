@@ -37,11 +37,6 @@ auto f_automatic_bug() {
 	return (5,'a',"bug!");
 }
 
-ostream& operator<< (ostream& out, basic_string<int> s) {
-	for (int i: s)
-		out << i;
-	return out;
-}
 
 int main() {
 	auto t = tuple(5,'a', 6.7);
