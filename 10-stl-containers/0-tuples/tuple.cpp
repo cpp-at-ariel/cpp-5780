@@ -39,6 +39,8 @@ auto f_automatic_bug() {
 
 
 int main() {
+	f_automatic_returntype();
+
 	auto t = tuple(5,'a', 6.7);
 	cout << get<0>(t) << " " << get<1>(t) << " " << get<2>(t) << endl;
 

@@ -20,7 +20,7 @@ int main() {
   decltype(b) bb=aa;
   decltype(b)& cc=aa;
 
-  auto c = a;
+  auto c = a+5;
   // equivalent to:
-  // decltype(a) c = a;
+  // decltype(a+5) c = a+5;
 }

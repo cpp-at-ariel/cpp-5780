@@ -19,6 +19,7 @@ ostream& operator<< (ostream& out, basic_string<int> s) {
 int main() {
 	string s("abcdef");
 	s.replace(3,6,"xyz");
+	s += std::to_string(6.7);
 	cout << s << endl;
 
 	basic_string<int> si({1,2,3,4,5,6});

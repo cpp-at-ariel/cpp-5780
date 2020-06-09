@@ -19,7 +19,17 @@ int main() {
 	cout << boolalpha << (m1.find("abc")!=m1.end()) << endl;
 	cout << boolalpha << (m1.find("def")!=m1.end()) << endl;
 	cout << boolalpha << (m1.find("xyz")!=m1.end()) << endl;
-	cout << m1.at("xyz") << endl;  // throws exception
+
+	auto find_abc = m1.find("abc");
+	//find_abc->first = string("abd"); // const
+	find_abc->second = 500;
+	cout << "m1[abc]=" << m1["abc"] << endl;
+
+	//cout << m1.at("xyz") << endl;  // throws exception
+
+	for(auto pair1: m1) {
+		cout << pair1.first << ':' << pair1.second << endl;
+	}
 
 	for(auto [key,val] : m1) {
 		cout << key << ':' << val << endl;

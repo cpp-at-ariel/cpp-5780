@@ -18,7 +18,7 @@ using namespace std;
  * (instead of the default which is from small to large).
  */
 struct SederYored {
-	bool operator()(int x, int y) {
+	bool operator()(int x, int y) const {
 		return y<x;
 	}
 };
@@ -28,7 +28,7 @@ struct SederYored {
  * In each group, elements are arranged from small to large.
  */
 struct ZugiIzugi {
-	bool operator()(int x, int y) {
+	bool operator()(int x, int y) const {
 		if ( (x%2 == y%2) )
 			return x<y;
 		if (x%2==0 && y%2!=0)
@@ -42,7 +42,7 @@ struct ZugiIzugi {
 struct UserDefinedOrder {
 	bool yored;
 	UserDefinedOrder(bool yored) { this->yored = yored; }
-	bool operator()(int x, int y) {
+	bool operator()(int x, int y) const {
 		return yored? x>y: x<y;
 	}
 };
@@ -57,13 +57,14 @@ int main() {
 	cout << seder_yored(5,4)  << endl;
 
 	// Demonstrate using comparison functors in sets:
-	// set<int> s1;
+	set<int> s1;
 	// cout << s1 << endl;    // long compiler error
-	set<int,SederYored> s1;
+	//set<int,SederYored> s1;
 	// set<int,decltype(seder_yored)> s1 (seder_yored);
+
 	// set<int, less<int> > s1;  // default
 	// set<int, greater<> > s1;
-	// set<int,ZugiIzugi> s1 {1,2,4,6};
+	//set<int,ZugiIzugi> s1 {1,2,4,6};
 	bool user_chose_seder_yored = true;
 	// set<int, UserDefinedOrder> s1 (user_chose_seder_yored);
 

@@ -4,8 +4,9 @@
 #include <iostream>
 using namespace std;
 
-int main() {
 
+
+int main() {
 	/*** A stack of strings ***/
 
 	string str1("Hello ");
@@ -24,15 +25,17 @@ int main() {
 	strStk.push(str1);
 	// Old C++ style
 	for (
-		Stk<string>::iterator it = strStk.begin(); 
+		auto it = strStk.begin(); 
 		it!=strStk.end(); 
 		++it
 		)
 	{
 		string val = *it;
+		*it = "Life\n";
 		cout << it->size() << " ";
 		cout << *it;
 	}
+
 	// C++-11 style
 	for (const string& val: strStk) {
 		cout << val.size() << " ";

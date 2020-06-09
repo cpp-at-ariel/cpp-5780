@@ -123,12 +123,73 @@ public:
 		}
 	};  // END OF CLASS ITERATOR
 
+
+
+	class const_iterator {
+
+	  private:
+		Node* pointer_to_current_node;
+
+	public:
+
+		const_iterator(Node* ptr = nullptr)
+			: pointer_to_current_node(ptr) {
+		}
+
+		// Note that the method is const as this operator does not
+		// allow changing of the iterator.
+		// Note that it returns T& as it allows to change what it points to.
+		// A const_iterator class will return const T&
+		// and the method will still be const
+		const T& operator*() const {
+			//return *pointer_to_current_node;
+			return pointer_to_current_node->m_value;
+		}
+
+		const T* operator->() const {
+			return &(pointer_to_current_node->m_value);
+		}
+
+		// ++i;
+		const_iterator& operator++() {
+			//++pointer_to_current_node;
+			pointer_to_current_node = pointer_to_current_node->m_next;
+			return *this;
+		}
+
+		// i++;
+		// Usually iterators are passed by value and not by const& as they are small.
+		const const_iterator operator++(int) {
+			const_iterator tmp= *this;
+			pointer_to_current_node= pointer_to_current_node->m_next;
+			return tmp;
+		}
+
+		bool operator==(const const_iterator& rhs) const {
+			return pointer_to_current_node == rhs.pointer_to_current_node;
+		}
+
+		bool operator!=(const const_iterator& rhs) const {
+			return pointer_to_current_node != rhs.pointer_to_current_node;
+		}
+	};  // END OF CLASS const_iterator
+
+
+
 	iterator begin() {
 		return iterator{m_first};
 	}
 	
 	iterator end() {
 		return iterator{nullptr};
+	}
+
+	const_iterator cbegin() const {
+		return const_iterator{m_first};
+	}
+	
+	const_iterator cend() const {
+		return const_iterator{nullptr};
 	}
 
 	//-------------------------------------------------------------------
