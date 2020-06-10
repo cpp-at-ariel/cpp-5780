@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <tuple>
+#include <vector>
 using namespace std;
 
 
@@ -19,10 +20,11 @@ ostream& operator<< (ostream& out, basic_string<int> s) {
 int main() {
 	string s("abcdef");
 	s.replace(3,6,"xyz");
-	s += std::to_string(6.7);
+	//s += std::to_string(6.7);
 	cout << s << endl;
 
 	basic_string<int> si({1,2,3,4,5,6});
-	si.replace(3,6, basic_string<int>{7,8,9});
+	si.replace(3,6, {7,8,9});
 	cout << si << endl;
+
 }

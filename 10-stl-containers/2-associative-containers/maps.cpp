@@ -22,10 +22,11 @@ int main() {
 
 	auto find_abc = m1.find("abc");
 	//find_abc->first = string("abd"); // const
+	auto at_find_abc = *find_abc;
 	find_abc->second = 500;
 	cout << "m1[abc]=" << m1["abc"] << endl;
 
-	//cout << m1.at("xyz") << endl;  // throws exception
+	// cout << m1.at("xyz") << endl;  // throws exception
 
 	for(auto pair1: m1) {
 		cout << pair1.first << ':' << pair1.second << endl;

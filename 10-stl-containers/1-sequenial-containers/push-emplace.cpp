@@ -43,6 +43,7 @@ int main() {
 	// v1.at(6) = MyClass{7,7};  // exception
 
 	auto v1iter = v1.begin();
+	v1iter++;
 	*v1iter = MyClass{8,9};
 
 	// const vector<MyClass> v2;

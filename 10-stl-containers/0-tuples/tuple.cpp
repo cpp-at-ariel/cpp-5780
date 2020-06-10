@@ -18,12 +18,12 @@ tuple<int,char,string> f_automatic_constructor() {
 }
 
 auto f_automatic_returntype() {
-	return tuple<int,char,string>{5,'a',string("hello")};
+	return tuple<int,char,string>{5,'a',"hello"};
 }
 
 auto f_automatic_both() {
 	// since c++17:
- 	return tuple(5,'a',"hello");
+ 	return tuple{5,'a',"hello"};
 
 	// until c++14:
  	//return make_tuple(5,'a',"hello");
@@ -39,10 +39,13 @@ auto f_automatic_bug() {
 
 
 int main() {
-	f_automatic_returntype();
+	auto p = pair(6,'b');
+	auto [p0,p1]  = p;
 
-	auto t = tuple(5,'a', 6.7);
+	auto t = tuple(5,'a', 6.7);  // equivalent to:
+	// tuple<int,char,double> t = tuple(5,'a', 6.7);  // equivalent to:
 	cout << get<0>(t) << " " << get<1>(t) << " " << get<2>(t) << endl;
+	auto [t0,t1,t2] = t;
 
 	auto f = f_automatic_both; // f is a pointer to function
 	auto [ii,cc,ss] = f();

@@ -36,6 +36,10 @@ struct ZugiIzugi {
 		else // if (x%2!=0 && y%2==0)
 			return false;
 	}
+
+	string operator()(int x) const {
+		return "abc";
+	}
 };
 
 
@@ -53,19 +57,22 @@ int main() {
 	SederYored compare;
 	cout << boolalpha << compare(5,4) << endl;
 
-	auto seder_yored = [](int a, int b) {return a>b;};
+	auto seder_yored = [] (int a, int b) {return a>b;};
 	cout << seder_yored(5,4)  << endl;
 
+	// int i;
+	// i(5,4);
+
 	// Demonstrate using comparison functors in sets:
-	set<int> s1;
+	//set<int> s1;
 	// cout << s1 << endl;    // long compiler error
 	//set<int,SederYored> s1;
-	// set<int,decltype(seder_yored)> s1 (seder_yored);
+	set<int,decltype(seder_yored)> s1 (seder_yored);
 
 	// set<int, less<int> > s1;  // default
 	// set<int, greater<> > s1;
-	//set<int,ZugiIzugi> s1 {1,2,4,6};
-	bool user_chose_seder_yored = true;
+	// set<int,ZugiIzugi> s1 {1,2,4,6};
+	// bool user_chose_seder_yored = true;
 	// set<int, UserDefinedOrder> s1 (user_chose_seder_yored);
 
 	s1.emplace(5);

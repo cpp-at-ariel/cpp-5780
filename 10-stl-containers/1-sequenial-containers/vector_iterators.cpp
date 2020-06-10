@@ -29,6 +29,7 @@ class iterable_printer {
 
 
 int main() {
+	throw string("abc");
 	vector<string> v1;
 	//vector<int> v2(v1.begin(), v1.end());  // static assert
 
