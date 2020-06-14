@@ -7,29 +7,40 @@
 using namespace std;
 
 template<typename T>
-struct smartPointer{
-
+class UniquePointer {
 	T* ptr = nullptr;
-	smartPointer()=default;
-	smartPointer(T* t):ptr(t){};
-	auto operator->(){
+
+public:
+	UniquePointer()=default;
+
+	// Convert from C pointer:
+	UniquePointer(T* t): ptr(t) {} 
+
+	// Behave like C pointer:
+	T* operator->(){
 		return ptr;
 	}
-	auto operator*(){
+	T& operator*(){
 		return *ptr;
 	}
-	smartPointer(smartPointer const& other)=delete;
-	smartPointer& operator=(smartPointer const& other) =delete;
-	~smartPointer(){delete ptr;}
-	smartPointer(smartPointer&& other){
+
+	// Do not allow to duplicate:
+	UniquePointer(UniquePointer const& other) = delete;
+	UniquePointer& operator=(UniquePointer const& other) = delete;
+
+	// Delete when out of scope:
+	~UniquePointer(){ 
+		if (ptr) delete ptr; 
+	}
+
+	// Move constructor and operator=:
+	UniquePointer(UniquePointer&& other){
 		*this=move(other);
 	}
-	void operator=(smartPointer&& other){
-
+	void operator=(UniquePointer&& other){
 		ptr=other.ptr;
 		other.ptr=nullptr;
 	}
-
 };
 
 
@@ -37,7 +48,7 @@ struct smartPointer{
 
 //
 //template<typename T>
-//struct smartPointer{
+//struct UniquePointer{
 //
 //	struct Ret{
 //		T* ptr=nullptr;
@@ -46,23 +57,23 @@ struct smartPointer{
 //
 //	Ret* ret = new Ret;
 //
-//	smartPointer()=default;
-//	smartPointer(T* t){ret -> ptr=t; ret->rc++;};
+//	UniquePointer()=default;
+//	UniquePointer(T* t){ret -> ptr=t; ret->rc++;};
 //	auto operator->(){
 //		return ret->ptr;
 //	}
-//	smartPointer(smartPointer const& other){ret->ptr = other.ret->ptr; ret->rc++ ;};
-//	smartPointer& operator=(smartPointer const& other) {ret->ptr = other.ret->ptr; ret->rc++ ;};
+//	UniquePointer(UniquePointer const& other){ret->ptr = other.ret->ptr; ret->rc++ ;};
+//	UniquePointer& operator=(UniquePointer const& other) {ret->ptr = other.ret->ptr; ret->rc++ ;};
 //
-//	~smartPointer(){
+//	~UniquePointer(){
 //		ret -> rc--;
 //		if(ret -> rc == 0)
 //			delete ret->ptr;
 //	}
-//	smartPointer(smartPointer&& other){
+//	UniquePointer(UniquePointer&& other){
 //		*this=move(other);
 //	}
-//	void operator=(smartPointer&& other){
+//	void operator=(UniquePointer&& other){
 //
 //		ret->ptr=other.ret->ptr;
 //	}
@@ -75,7 +86,7 @@ const static int MAX_MUSICIANS = 20;
 void playMusic (int numMusicians) // throw (TooNoisy)
 {	
 	Musician* band [MAX_MUSICIANS];
-	//smartPointer<Musician> band [MAX_MUSICIANS];
+	//UniquePointer<Musician> band [MAX_MUSICIANS];
 
 	for (int i = 0; i < numMusicians; ++i)
 			band[i] = new Musician;								
