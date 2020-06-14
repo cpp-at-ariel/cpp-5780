@@ -12,7 +12,19 @@ public:
 	UniquePointer()=default;
 
 	// Convert from C pointer:
-	UniquePointer(T* t): ptr(t) {} 
+	UniquePointer(T* new_ptr):
+		ptr(new_ptr) {}
+
+	UniquePointer<T>& operator=(T* new_ptr) {
+		if (ptr) delete ptr;
+		ptr = new_ptr;
+		return *this;
+	}
+
+	// Delete when out of scope:
+	~UniquePointer(){ 
+		if (ptr) delete ptr; 
+	}
 
 	// Behave like C pointer:
 	T* operator->(){
@@ -26,17 +38,14 @@ public:
 	UniquePointer(UniquePointer const& other) = delete;
 	UniquePointer& operator=(UniquePointer const& other) = delete;
 
-	// Delete when out of scope:
-	~UniquePointer(){ 
-		if (ptr) delete ptr; 
-	}
-
 	// Move constructor and operator=:
 	UniquePointer(UniquePointer&& other){
-		*this=move(other);
+		ptr  = other.ptr;
+		other.ptr = nullptr;
 	}
 	void operator=(UniquePointer&& other){
-		ptr=other.ptr;
-		other.ptr=nullptr;
+		if (ptr) delete ptr; 
+		ptr  = other.ptr;
+		other.ptr = nullptr;
 	}
 };

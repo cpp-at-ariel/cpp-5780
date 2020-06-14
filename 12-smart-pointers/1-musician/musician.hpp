@@ -3,8 +3,9 @@
 #include "tooNoisy.h"
 
 class Musician {
+	std::string name;
 public:
-	Musician ();  //throw()	
+	Musician (std::string name);  //throw()	
 	~Musician ();
 	void play () const; //throw (TooNoisy)
 private:		

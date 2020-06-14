@@ -12,8 +12,7 @@ endif
 
 MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
 
-SOURCES=$(MAIN) musician.cpp
-HEADERS=AutoPointer.hpp UniquePointer.hpp SharedPointer.hpp musician.hpp
+SOURCES=$(MAIN)
 
 all: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)

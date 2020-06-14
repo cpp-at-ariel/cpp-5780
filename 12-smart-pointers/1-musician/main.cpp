@@ -1,8 +1,18 @@
+/**
+ * A demo of C pointers vs. smart pointers.
+ * 
+ * Author: Eran Kaufmann
+ * Since:  2020-06
+ */
+
+
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 #include "musician.hpp"
-#include "SharedPointer.hpp"
+#include "AutoPointer.hpp"
 #include "UniquePointer.hpp"
+#include "SharedPointer.hpp"
 
 
 using namespace std;
@@ -12,7 +22,7 @@ using namespace std;
 void playMusic1 (int numMusicians) {
 	vector<Musician*> band (numMusicians);
 	for (int i = 0; i < numMusicians; ++i)
-		band[i] = new Musician;								
+		band[i] = new Musician(to_string(i));								
 
 	for (int i = 0; i < numMusicians; ++i)
 		band[i]->play();	
@@ -29,7 +39,7 @@ void playMusic2 (int numMusicians) {
 	vector<Musician*> band (numMusicians);
 
 	for (int i = 0; i < numMusicians; ++i)
-		band[i] = new Musician;								
+		band[i] = new Musician(to_string(i));								
 
 	try {            
 		for (int i = 0; i < numMusicians; ++i)
@@ -43,25 +53,84 @@ void playMusic2 (int numMusicians) {
 }
 #endif
 
-// Play music with smart pointers
+// Play music with smart auto-pointers
 void playMusic3 (int numMusicians) {
-	vector<Musician*> band (numMusicians);
+	vector<AutoPointer<Musician>> band (numMusicians);
 
 	for (int i = 0; i < numMusicians; ++i)
-		band[i] = new Musician;								
+		band[i] = new Musician(to_string(i));								
 
 	for (int i = 0; i < numMusicians; ++i)
-		band[i]->play();	
+		band[i]->play();
 	
 	cout << endl << endl << "All musicians in band are playing!" << endl << endl;	
+
+	// AutoPointer<Musician> other1 = band[0];         // Does not compile
+	// AutoPointer<Musician> other2; other2 = band[0]; // Does not compile
 }
 
+
+UniquePointer<Musician> musician_with_a_random_name(int i) {
+	UniquePointer<Musician> new_musician = new Musician("m_"+to_string(i)+"_"+to_string(rand()));
+	return new_musician;
+}
+
+
+UniquePointer<Musician> champion1;
+
+// Play music with smart unique-pointers
+void playMusic4 (int numMusicians) {
+	vector<UniquePointer<Musician>> band (numMusicians);
+
+	for (int i = 0; i < numMusicians; ++i)
+		band[i] = musician_with_a_random_name(i);
+
+	UniquePointer<Musician> other2 = move(band[2]);
+	UniquePointer<Musician> other3; other3 = move(band[3]);
+	champion1 = move(band[4]);
+
+	for (int i = 0; i < numMusicians; ++i)
+		band[i]->play();
+
+	cout << endl << endl << "All musicians in band are playing!" << endl << endl;	
+
+}
+
+
+SharedPointer<Musician> shared_musician_with_a_random_name(int i) {
+	SharedPointer<Musician> new_musician = new Musician("m_"+to_string(i)+"_"+to_string(rand()));
+	return new_musician;
+}
+
+
+SharedPointer<Musician> champion2;
+
+// Play music with smart shared-pointers
+void playMusic5 (int numMusicians) {
+	vector<SharedPointer<Musician>> band (numMusicians);
+
+	for (int i = 0; i < numMusicians; ++i)
+		band[i] = shared_musician_with_a_random_name(i);
+
+	SharedPointer<Musician> other2 = band[2];
+	SharedPointer<Musician> other3; other3 = band[3];
+	champion2 = band[4];
+
+	for (int i = 0; i < numMusicians; ++i)
+		band[i]->play();
+
+	cout << endl << endl << "All musicians in band are playing!" << endl << endl;	
+}
 
 
 int main () {
 	int numMusicans = 7;
 	try	{
-		playMusic1(numMusicans);
+		playMusic4(numMusicans);
+		// SharedPointer<Musician> new_musician = new Musician("m_"+to_string(99)+"_"+to_string(rand()));
+		// SharedPointer<Musician> new_musician_2 =  new_musician;
+		// SharedPointer<Musician> new_musician_3 =  new_musician_2;
+		// SharedPointer<Musician> new_musician_4 =  new_musician;
 	} catch (TooNoisy& noisy) {
 		cout << endl << endl << "It is too noisy here! " << noisy.getNumMusicians() << " musicians are playing concurrently! Stop Playing!" << endl << endl;
 	}

@@ -7,33 +7,68 @@
 
 template<typename T> class SharedPointer{
 
-	struct Ret{
+	struct ReferenceTracker {
 		T* ptr=nullptr;
-		int rc=0;
+		int counter=0;
 	};
 
-	Ret* ret = new Ret;
+	ReferenceTracker* tracker = nullptr;
 
 public:
-
 	SharedPointer()=default;
-	SharedPointer(T* t){ret -> ptr=t; ret->rc++;};
-	auto operator->(){
-		return ret->ptr;
-	}
-	SharedPointer(SharedPointer const& other){ret->ptr = other.ret->ptr; ret->rc++ ;};
-	SharedPointer& operator=(SharedPointer const& other) {ret->ptr = other.ret->ptr; ret->rc++ ;};
 
+	SharedPointer(T* new_ptr): 
+		tracker ( new ReferenceTracker {new_ptr, 1} )   { 
+		// std::cerr << "In constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+	};
+
+	// Delete when no remaining references:
 	~SharedPointer(){
-		ret -> rc--;
-		if(ret -> rc == 0)
-			delete ret->ptr;
-	}
-	SharedPointer(SharedPointer&& other){
-		*this=move(other);
-	}
-	void operator=(SharedPointer&& other){
-		ret->ptr=other.ret->ptr;
+		if (!tracker) return;
+		tracker->counter--;
+		// std::cerr << "In destructor: tracker->counter = " << tracker->counter << std::endl;
+		if (tracker->counter == 0) {
+			delete tracker->ptr;
+			delete tracker;
+		}
 	}
 
+	// Copy constructor:
+	SharedPointer(SharedPointer<T> const& other){
+		tracker = other.tracker;
+		tracker->counter++ ;
+		// std::cerr << "In copy constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+	};
+
+	// Assignment operator:
+	SharedPointer& operator=(SharedPointer<T> const& other) {
+		if (tracker) {
+			// std::cerr << "Start operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+			tracker->counter--;
+			if (tracker->counter == 0)
+				delete tracker->ptr;
+		}
+		tracker = other.tracker;
+		tracker->counter++ ;
+		// std::cerr << "End operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+		return *this;
+	}
+
+	// // Move constructor:
+	// SharedPointer(SharedPointer&& other){
+	// 	*this=move(other);
+	// }
+
+	// // Move operator:
+	// void operator=(SharedPointer&& other){
+	// 	tracker->ptr = other.tracker->ptr;
+	// }
+
+	// Behave like C pointer:
+	T* operator->(){
+		return tracker->ptr;
+	}
+	T& operator*(){
+		return *(tracker->ptr);
+	}
 };
