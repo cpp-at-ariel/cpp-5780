@@ -1,7 +1,7 @@
 /**
  * A demo of C pointers vs. smart pointers.
  * 
- * Author: Eran Kaufmann
+ * Authors: Eran Kaufmann, Erel Segal-Halevi
  * Since:  2020-06
  */
 
@@ -127,10 +127,6 @@ int main () {
 	int numMusicans = 7;
 	try	{
 		playMusic4(numMusicans);
-		// SharedPointer<Musician> new_musician = new Musician("m_"+to_string(99)+"_"+to_string(rand()));
-		// SharedPointer<Musician> new_musician_2 =  new_musician;
-		// SharedPointer<Musician> new_musician_3 =  new_musician_2;
-		// SharedPointer<Musician> new_musician_4 =  new_musician;
 	} catch (TooNoisy& noisy) {
 		cout << endl << endl << "It is too noisy here! " << noisy.getNumMusicians() << " musicians are playing concurrently! Stop Playing!" << endl << endl;
 	}
