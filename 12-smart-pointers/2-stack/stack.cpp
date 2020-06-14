@@ -1,3 +1,11 @@
+/**
+ * We wrote a stack using pointers.
+ * Here is the same stack using smart pointers.
+ * 
+ * Author: Eran Kaufmann
+ * Since : 2020-06
+ */
+
 #include <string>
 #include <iostream>
 #include <vector>
