@@ -33,6 +33,10 @@ struct Stack{
 		head = temp;
 	}
 
+	void pop() {
+		head = head->next;
+	}
+
 	struct iterator{
 		using iterator_category = std::forward_iterator_tag;
 		using value_type = int;

@@ -12,7 +12,7 @@ endif
 
 MAINEXECUTABLE=$(subst .cpp,,$(MAIN)).exe
 
-SOURCES=$(MAIN) musician.cpp smartPointer.cpp
+SOURCES=$(MAIN) musician.cpp
 
 all: $(MAINEXECUTABLE)
 	$(MAINEXECUTABLE)
