@@ -33,7 +33,10 @@ public:
 
 
 /* This is an iterable with a field that can be either a reference or a copy.
-   It can handle both l-values (by referencing) and r-values (by copying). */
+   It can handle both l-values (by referencing) and r-values (by copying). 
+   
+   See https://stackoverflow.com/q/48862454/827927 for more details.
+*/
 template<typename Container>
 class DummyIterable2 {
 	Container container;
