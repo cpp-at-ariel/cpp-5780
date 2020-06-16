@@ -29,13 +29,9 @@ class iterable_printer {
 
 
 int main() {
-	throw string("abc");
 	vector<string> v1;
-	//vector<int> v2(v1.begin(), v1.end());  // static assert
+	// vector<int> v2(v1.begin(), v1.end());  // static assert
 
-	auto v2 = vector({1,2,3,4});
-	copy(v2.begin(), v2.end(), ostream_iterator<int>(cout," "));
-	cout << endl;
-
-	iterable_printer(vector({1,2,3,4})).print();
+	auto v3 = vector({1,2,3,4});
+	iterable_printer(v3).print();
 }
