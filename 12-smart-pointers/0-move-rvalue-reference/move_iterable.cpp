@@ -3,6 +3,25 @@
 using namespace std;
 
 
+/* This class wraps a vector and adds a print statement in the copy constructor.
+   It is used only to check when a vector is copied. */
+template<class T>
+class vector_with_prints {
+	vector<T> v;
+public:
+
+	template<typename Argument> vector_with_prints(Argument arg): v(arg) {}
+	template<typename Argument1, typename Argument2> vector_with_prints(Argument1 arg1, Argument2 arg2): v(arg1,arg2) {}
+
+	vector_with_prints(const vector_with_prints<T>& vwp): v(vwp.v) {
+		cout << "copy constructor " << endl;
+	}
+	auto begin() const { return v.begin(); }
+	auto end() const { return v.end(); }
+};
+
+/* This is an iterable with a reference field.
+   It can handle l-values but not r-values. */
 template<typename Container>
 class DummyIterable1 {
 	const Container& container;
@@ -12,21 +31,25 @@ public:
 	auto end() { return container.end(); }
 };
 
+
+/* This is an iterable with a field that can be either a reference or a copy.
+   It can handle both l-values (by referencing) and r-values (by copying). */
 template<typename Container>
 class DummyIterable2 {
-	const Container container_copy;
-	const Container& container_ref;
+	Container container;
 public:
-	DummyIterable2(const Container&  the_container): container_ref (the_container) { cout << "no copy"<<endl;	}
-	DummyIterable2(const Container&& the_container): container_copy(the_container), container_ref(container_copy) { cout << "copy"<<endl;	}
-	auto begin() { return container_ref.begin(); }
-	auto end() { return container_ref.end(); }
+	DummyIterable2(const Container&& the_container): container{forward<const Container>(the_container)} {} 
+	// DummyIterable2(const Container& the_container): container{the_container} {} 
+	auto begin() { return container.begin(); }
+	auto end() { return container.end(); }
 };
 
+template<typename Container>
+DummyIterable2(Container&&) -> DummyIterable2<Container>;
 
 
 void demo_iterables() {
-	vector<int> v1{1,2,3,4};
+	vector_with_prints<int> v1(5,55);
 
 	cout << endl << "DummyIterable1: " << endl;
 	// DummyIterable on an l-value works:
@@ -35,7 +58,7 @@ void demo_iterables() {
 	} cout << endl;
 
 	// DummyIterable on an r-value leads to undefined behavior:
-	for (auto i: DummyIterable1{vector<int>{1,2,3,4}}) {
+	for (auto i: DummyIterable1{vector_with_prints<int>(5,55)}) {
 		cout << i << " ";
 	} cout << endl;
 
@@ -46,7 +69,7 @@ void demo_iterables() {
 	} cout << endl;
 
 	// DummyIterable on an r-value copies and works too!:
-	for (auto i: DummyIterable2{vector<int>{1,2,3,4}}) {
+	for (auto i: DummyIterable2{vector_with_prints<int>(5,55)}) {
 		cout << i << " ";
 	} cout << endl;
 }
