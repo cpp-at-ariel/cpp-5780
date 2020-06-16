@@ -48,7 +48,7 @@ int main() {
 	auto adjacentfind = adjacent_find(begin(v), end(v));
 	cout << "\nadjacent_find(): " << (adjacentfind!=end(v)) << " " << (adjacentfind-begin(v)) << endl;
 
-	// search = find a contiguous block
+	// Search for a contiguous block:
 	array<int,3> v520 {5,2,0};
 	auto search520 = search((begin(v)+6)-2, end(v), begin(v520), end(v520));
 	cout << "\nsearch(5,2,0): " << (search520!=end(v)) << " " << (search520-begin(v)) << endl;

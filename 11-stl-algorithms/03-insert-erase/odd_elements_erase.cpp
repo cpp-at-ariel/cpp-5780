@@ -36,14 +36,14 @@ void erase_odd_elements_2(Container& c, Iterator b, Iterator e) {
 int main() {
 	{
 		cout << "erase with a bug" << endl;
-		vector<int> v {1,2,4,7,11,16,22};
+		vector<int> v {1,2,16,4,7,11,22};
 		cout << "before: " << v << endl;
 		erase_odd_elements(v, v.begin(), v.end());
 		cout << "after: " << v << endl;
 	}
 	{
 		cout << "erase correctly" << endl;
-		set<int> v {1,2,4,7,11,16,22};
+		set<int> v {1,2,16,4,7,11,22};
 		cout << "before: " << v << endl;
 		erase_odd_elements_2(v, v.begin(), v.end());
 		cout << "after: " << v << endl;
