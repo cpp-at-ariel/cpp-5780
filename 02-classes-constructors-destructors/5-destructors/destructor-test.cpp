@@ -46,8 +46,8 @@ int main() {
     delete plist;
 
     cout << "3" << endl;
-    Test t(555);
-    t = f();
+    Test t1(555);
+    Test t2 = f();
     cout << "4" << endl;
     g(Test(67));
     cout << "5" << endl;
