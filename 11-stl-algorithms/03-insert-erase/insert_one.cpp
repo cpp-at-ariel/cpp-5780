@@ -14,17 +14,13 @@ int main() {
 		cout << v << endl;
 		v.insert(v.begin(),0);
 		cout << v << endl;
-		auto it = v.begin();
-		++it;
-		++it;
-		++it;
-		++it;
-		cout << "*it=" << *it << endl;
+		auto it = v.begin() + 4;
+		cout << "*it==" << *it << endl;
 		v.insert(it,5);
-		cout << "*it=" << *it << endl;
+		cout << "*it==" << *it << endl;
 		cout << v << endl;
 		v.insert(it,6);
-		cout << "*it=" << *it << endl;
+		cout << "*it==" << *it << endl;
 		cout << v << endl;
 
 		//int capacity_before = v.capacity();

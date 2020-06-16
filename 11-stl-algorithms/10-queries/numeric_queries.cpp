@@ -22,7 +22,7 @@ int product(int a, int b) { return a*b; }
 int main() {
 	vector<int> v{4,6,8,5,4,1,3,1,4,7};    
 	cout << "v = " << v << endl;
-	cout << "count(4): " << count(begin(v),end(v),4) << endl;
+	cout << "count(4): " << count(v.begin(),v.end(),4) << endl;
 	cout << "count(1): " << count(begin(v),end(v),1) << endl;
 	cout << "count(9): " << count(begin(v),end(v),9) << endl;
 	cout << "count(4) from third place: " << count(begin(v)+3,end(v),4) << endl;
@@ -40,7 +40,6 @@ int main() {
 
 	// vector<Person> vp(3);
 	// accumulate(begin(vp),end(vp),Person{});
-
 
 	cout << "v = " << v << endl;
 	vector<int> v2;

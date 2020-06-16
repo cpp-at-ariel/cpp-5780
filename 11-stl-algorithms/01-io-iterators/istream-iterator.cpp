@@ -20,7 +20,7 @@ int main() {
 	istream_iterator<float> iend;
 	cout << "istream_iterator: ";
 	for (; ibegin!=iend; ++ibegin)
-		cout << (*ibegin) << "  ";
+		cout << (*ibegin) << endl;
 	cout << endl;
 
 	// example of istream_iterator + copy:
@@ -29,4 +29,5 @@ int main() {
 	// copy(istream_iterator<int>(cin), istream_iterator<int>{} , v1.begin());
 	copy(istream_iterator<int>(str2), istream_iterator<int>{} , v1.begin());
 	copy(v1.begin(), v1.end(), ostream_iterator<int>(cout, " "));
+
 }

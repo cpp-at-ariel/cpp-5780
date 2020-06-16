@@ -32,7 +32,7 @@ int main() {
 	//auto o = v0.begin();
 	ostream_iterator<double> o(cout,"---");
 	for (double i=0; i<10; ++i) {
-		(*o) = i;
+		(*o) = i; // cout << i << "---";
 		++o;
 	}
 	//cout << v0 << endl;

@@ -43,7 +43,7 @@ int main() {
 	}
 	{
 		cout << "erase correctly" << endl;
-		vector<int> v {1,2,4,7,11,16,22};
+		set<int> v {1,2,4,7,11,16,22};
 		cout << "before: " << v << endl;
 		erase_odd_elements_2(v, v.begin(), v.end());
 		cout << "after: " << v << endl;

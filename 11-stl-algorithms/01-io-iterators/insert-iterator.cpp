@@ -41,9 +41,9 @@ int main() {
 	copy(v1.begin(), v1.end(), insert_iterator(s1, s1.begin()));
 	// copy(v1.begin(), v1.end(), s1.begin()); // compile error 
 	cout << "s1: " << s1 << endl;
-	vector<int> v2;
-	copy(s1.begin(), s1.end(), back_insert_iterator(v2));
-	// copy(s1.begin(), s1.end(), v2.begin());  
+	list<int> v2;
+	copy(s1.begin(), s1.end(), front_insert_iterator(v2));
+	// copy(s1.begin(), s1.end(), v2.begin());
 	cout << "v2: " << v2 << endl;
 }
 
