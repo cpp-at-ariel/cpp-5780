@@ -33,7 +33,7 @@ int main() {
 	set_symmetric_difference(begin(v2), end(v2), begin(v1), end(v1), back_inserter(vdifference));
 	cout << "v2 X v1: " << vdifference << endl;
 
-	vector<int> v3{6,8,10};
+	vector<int> v3{6,8,12};
 	cout << boolalpha << includes(begin(v1), end(v1), begin(v3), end(v3)) << endl;
 	cout << boolalpha << includes(begin(v2), end(v2), begin(v3), end(v3)) << endl;
 }

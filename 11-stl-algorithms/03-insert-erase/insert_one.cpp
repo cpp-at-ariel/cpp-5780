@@ -17,8 +17,8 @@ int main() {
 		auto it = v.begin() + 4;
 		cout << "*it==" << *it << endl;
 		v.insert(it,5);
-		cout << "*it==" << *it << endl;
 		cout << v << endl;
+		cout << "*it==" << *it << endl;
 		v.insert(it,6);
 		cout << "*it==" << *it << endl;
 		cout << v << endl;

@@ -24,8 +24,8 @@ int main() {
 
 	auto middle = partition(begin(v), end(v), [](int x){return x%2==0;});
 	cout << "partition to even vs. odd: " << v << endl;
-	cout << "even elements: " << tostring(begin(v), middle) << endl;
-	cout << "odd elements: " << tostring(middle, end(v)) << endl;
+	cout << "even elements: "; copy(begin(v), middle, ostream_iterator<int>(cout,",")); cout << endl;//  << tostring(begin(v), middle) << endl;
+	cout << "odd elements: "; copy(middle, end(v), ostream_iterator<int>(cout,",")); cout << endl;//  << tostring(begin(v), middle) << endl;
 
 	//middle = partition(begin(v), end(v), is_divisible_by_5);
 	// equivalent to:
@@ -39,6 +39,7 @@ int main() {
 	cout << "sorted even elements: " << tostring(begin(v), middle) << endl;
 	cout << "sorted odd elements: " << tostring(middle, end(v)) << endl;
 
+	// v.insert(v.begin()+3, 11);
 	auto middle2 = partition_point(begin(v), end(v), [](int x){return x%2==0;});
 	cout << "\neven elements: " << tostring(begin(v), middle2) << endl;
 	cout << "odd elements: " << tostring(middle2, end(v)) << endl;

@@ -27,6 +27,8 @@ int main() {
 	cout << "count(9): " << count(begin(v),end(v),9) << endl;
 	cout << "count(4) from third place: " << count(begin(v)+3,end(v),4) << endl;
 
+	istringstream istr{"4 5 4 6 4 7 4 8 4 9 4 10 4 4 4"};
+	cout << "count(4) in istr: " << count(istream_iterator<int>(istr), istream_iterator<int>{}, 4) << endl;
 
 	cout << "accumulate (sum): " << accumulate(begin(v),end(v),0) << endl;
 	cout << "accumulate (product): " << accumulate(begin(v),end(v),
@@ -37,6 +39,7 @@ int main() {
 	vector<string> vs {"abc","def","ghi"};
 	cout << "accumulate (sum strings): " << 
 		accumulate(begin(vs),end(vs),string("")) << endl;
+
 
 	// vector<Person> vp(3);
 	// accumulate(begin(vp),end(vp),Person{});
@@ -53,12 +56,17 @@ int main() {
 	partial_sum(begin(v),end(v), ostream_iterator<int>(cout,","));
 	cout << endl;
 
+	// istringstream istr2{"4 5 4 6 4 7 4 8 4 9 4 10 4 4 4"};
+	// partial_sum(istream_iterator<int>{istr2}, istream_iterator<int>{}, ostream_iterator<int>(cout,","));
+	// cout << endl;
+
+
 	vector<int> v3;
 	adjacent_difference(begin(v2),end(v2), back_inserter(v3));
 	cout << "adjacent_difference: " << v3 << endl;
 
 	forward_list<int> u1 {1,2,3};
-	vector<int> u2 {4,5,6};
+	vector<int> u2       {4,5,6};
 	cout << "\ninner_product: " << inner_product(begin(u1),end(u1), begin(u2), 0) << endl;
 }
 

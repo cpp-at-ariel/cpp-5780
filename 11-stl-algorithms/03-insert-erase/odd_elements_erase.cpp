@@ -9,6 +9,7 @@
 
 
 #include "output_containers.hpp"
+#include <forward_list>
 using namespace std;
 
 template<typename Container, typename Iterator>
@@ -43,7 +44,7 @@ int main() {
 	}
 	{
 		cout << "erase correctly" << endl;
-		set<int> v {1,2,16,4,7,11,22};
+		list<int> v {1,2,16,4,7,11,22};
 		cout << "before: " << v << endl;
 		erase_odd_elements_2(v, v.begin(), v.end());
 		cout << "after: " << v << endl;
