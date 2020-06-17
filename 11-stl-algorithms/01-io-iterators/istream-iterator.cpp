@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
 	// example of istream_iterator:
-    istringstream str("0.12 0.2 0.3 0.4");
+    istringstream str("0.12     0.2 \n 0.3   0.4");
 	istream_iterator<float> ibegin(str);
 	istream_iterator<float> iend;
 	cout << "istream_iterator: ";

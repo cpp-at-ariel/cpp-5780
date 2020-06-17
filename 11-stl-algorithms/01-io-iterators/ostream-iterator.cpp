@@ -28,12 +28,11 @@ template<typename T> ostream& operator<<(ostream& out, const vector<T>& containe
 
 int main() {
 	// example of ostream_iterator:
-	//vector<double> v0(10);
-	//auto o = v0.begin();
-	ostream_iterator<double> o(cout,"---");
+	ostream_iterator<double> my_ostream_iterator(cout,"---");
 	for (double i=0; i<10; ++i) {
-		(*o) = i; // cout << i << "---";
-		++o;
+		(*my_ostream_iterator) = i; // cout << i << "---";
+		//double x = (*my_ostream_iterator); // compile error
+		++my_ostream_iterator;
 	}
 	//cout << v0 << endl;
 	cout << endl;

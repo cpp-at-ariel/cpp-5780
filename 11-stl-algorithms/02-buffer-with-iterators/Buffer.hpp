@@ -109,7 +109,6 @@ public:
 	const_iterator begin() const {
 		return _buf;
 	}
-
 	const_iterator end() const {
 		return _buf+_size;
 	}	//---------------------------------------------------------
