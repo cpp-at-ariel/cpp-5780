@@ -32,7 +32,7 @@ int main()
     for_each(nums.begin(), nums.end(), print);
 
     // calls Sum::operator() for each number
-    Sum s = for_each(nums.begin(), nums.end(), Sum());
+    Sum s = for_each(nums.begin(), nums.end(), Sum{});
  
 
     cout << '\n';

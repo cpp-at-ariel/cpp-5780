@@ -10,7 +10,7 @@ string find_shortest_path(const vector<vector<int>>& distances) {
 	vector<int> path(num_of_towns);
 	iota(path.begin(), path.end(), 0); // fill the vector with 0,...,N-1
 	vector<int> shortest_path_so_far;
-	int shortest_distance_so_far = numeric_limits<int>::max();
+	int shortest_distance_so_far = numeric_limits<int>::max();  // MAXINT, Integer.MaxValue
 	do {
 		int distance = 0;
 		for (int i=1; i<path.size(); ++i) {

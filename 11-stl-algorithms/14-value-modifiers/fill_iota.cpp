@@ -14,6 +14,14 @@
 #include "output_containers.hpp"
 using namespace std;
 
+struct Person {
+	int age;
+
+	Person& operator++() {
+		age++;
+		return *this;
+	}
+};
 
 
 int main() {
@@ -31,5 +39,9 @@ int main() {
 	cout << "iota(b): " << vc << endl;
 
 	// iota(ostream_iterator<int>(cout), ostream_iterator<int>{}, 52);
+
+	vector<Person> vp(10);
+	iota(begin(vp), end(vp), Person{42});
+	cout << vp[2].age << endl;
 }
 

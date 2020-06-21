@@ -9,7 +9,8 @@
 using namespace std;
 
 int main() {
-	string v {"abcd"};
+	string v {"abdc"};
+	sort(begin(v), end(v));
 	cout << "Permutations in increasing order:" << endl;
 	do {
 		cout << v << endl;

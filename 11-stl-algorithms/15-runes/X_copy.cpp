@@ -24,16 +24,20 @@ int main() {
 		back_inserter(even), back_inserter(odd), 
 		[](int x){return x%2==0;});
 	cout << "partition_copy to even vs. odd: " << even << "   " << odd << endl;
+	cout << "v: " << v << endl;
 
 	vector<int> vr;
 	rotate_copy(begin(v), begin(v)+3, end(v), back_inserter(vr));
 	cout << "rotate_copy(3): " << vr << endl;
+	cout << "v: " << v << endl;
 
 	reverse_copy(begin(v), end(v), begin(vr));
 	cout << "reverse_copy(3): " << vr << endl;
+	cout << "v: " << v << endl;
 
 	vector<int> vs(10);
 	partial_sort_copy(begin(v), end(v), begin(vs), end(vs));
 	cout << "partial_sort_copy: " << vs << endl;
+	cout << "v: " << v << endl;
 }
 

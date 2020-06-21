@@ -25,8 +25,8 @@ void playMusic1 (int numMusicians) {
 		band[i] = new Musician(to_string(i));								
 
 	for (int i = 0; i < numMusicians; ++i)
-		band[i]->play();	
-		
+		band[i]->play();
+
 	cout << endl << endl << "All musicians in band are playing!" << endl << endl;	
 
 	for (int i = 0; i < numMusicians; ++i)
@@ -64,7 +64,6 @@ void playMusic3 (int numMusicians) {
 		band[i]->play();
 	
 	cout << endl << endl << "All musicians in band are playing!" << endl << endl;	
-
 	// AutoPointer<Musician> other1 = band[0];         // Does not compile
 	// AutoPointer<Musician> other2; other2 = band[0]; // Does not compile
 }
@@ -84,6 +83,8 @@ void playMusic4 (int numMusicians) {
 
 	for (int i = 0; i < numMusicians; ++i)
 		band[i] = musician_with_a_random_name(i);
+
+	delete &(*band[0]);
 
 	UniquePointer<Musician> other2 = move(band[2]);
 	UniquePointer<Musician> other3; other3 = move(band[3]);
@@ -110,7 +111,7 @@ void playMusic5 (int numMusicians) {
 	vector<SharedPointer<Musician>> band (numMusicians);
 
 	for (int i = 0; i < numMusicians; ++i)
-		band[i] = shared_musician_with_a_random_name(i);
+		band[i] = new Musician(to_string(i)); //shared_musician_with_a_random_name(i);
 
 	SharedPointer<Musician> other2 = band[2];
 	SharedPointer<Musician> other3; other3 = band[3];

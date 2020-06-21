@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <numeric>
 #include <vector>
+#include <unordered_set>
 #include <array>
 #include "output_containers.hpp"
 using namespace std;
@@ -21,6 +22,12 @@ int main() {
 	auto v2 = v;
 	cout << "v: " << v << endl;
 	auto new_end = unique(begin(v), end(v));
+	unordered_set<int> vs;
+	vector<int> vsv;
+	copy(begin(v), end(v), inserter(vs, vs.end()));
+	copy(begin(vs), end(vs), back_inserter(vsv));
+	cout << "v after unordered_set: " << vsv << endl;
+
 	cout << "v after unique: " << v << endl;
 	v.erase(new_end, end(v));
 	cout << "v after erase: " << v << endl;

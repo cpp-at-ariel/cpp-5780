@@ -31,9 +31,10 @@ int main() {
 	sort(begin(v), end(v), greater<int>{});
 	cout << "\nsorted with comparator: " << v << endl;
 
-	nth_element(begin(v), begin(v)+5, end(v));
-	cout << "\nnth_element (5): " << v << endl;  // v[5] is in its correct place;
-	                                             // v[0..5] are the smallest 6 elements.
+	nth_element(begin(v), begin(v)+3, end(v));
+	cout << "\nvector after nth_element (3): " << v << endl;  // v[3] is in its correct place;
+	                                             // v[0..3] are the smallest 6 elements.
+	cout << "4th-smallest element: " << v[3] << endl;
 
 	partial_sort(begin(v), begin(v)+5, end(v));
 	// partial_sort(begin(v), end(v)-5, end(v));
@@ -41,6 +42,7 @@ int main() {
 	cout << "partial_sort (5): " << v << endl;  // v[0..4] are in their correct place
 	partial_sort(begin(v), begin(v)+5, end(v), greater<int>{});
 	cout << "partial_sort (5, greater<int>): " << v << endl;  // v[0..4] are in their correct place
+	
 	reverse(begin(v), end(v));
 	cout << "reverse (v): " << v << endl;
 

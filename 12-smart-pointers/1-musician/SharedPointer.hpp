@@ -19,38 +19,38 @@ public:
 
 	SharedPointer(T* new_ptr): 
 		tracker ( new ReferenceTracker {new_ptr, 1} )   { 
-		// std::cerr << "In constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
-	};
+		std::cout << "In constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+	}
+
+	// Copy constructor:
+	SharedPointer(const SharedPointer<T>& other){
+		tracker = other.tracker;
+		tracker->counter++ ;
+		// std::cout << "In copy constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+	}
 
 	// Delete when no remaining references:
 	~SharedPointer(){
 		if (!tracker) return;
 		tracker->counter--;
-		// std::cerr << "In destructor: tracker->counter = " << tracker->counter << std::endl;
+		// std::cout << "In destructor: tracker->counter = " << tracker->counter << std::endl;
 		if (tracker->counter == 0) {
 			delete tracker->ptr;
 			delete tracker;
 		}
 	}
 
-	// Copy constructor:
-	SharedPointer(SharedPointer<T> const& other){
-		tracker = other.tracker;
-		tracker->counter++ ;
-		// std::cerr << "In copy constructor: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
-	};
-
 	// Assignment operator:
 	SharedPointer& operator=(SharedPointer<T> const& other) {
 		if (tracker) {
-			// std::cerr << "Start operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+			// std::cout << "Start operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
 			tracker->counter--;
 			if (tracker->counter == 0)
 				delete tracker->ptr;
 		}
 		tracker = other.tracker;
 		tracker->counter++ ;
-		// std::cerr << "End operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
+		// std::cout << "End operator=: tracker = " << tracker << " tracker->counter = " << tracker->counter << std::endl;
 		return *this;
 	}
 

@@ -1,6 +1,6 @@
 /**
  * Demonstrates STL partition vs. stable_partition.
- * NOTE: with clang++-5.0, there is an apparent difference.
+ * NOTE: with clang++ (5 and 9), there is no apparent difference.
  * 
  * @author Erel Segal-Halevi
  * @since 2019-05
@@ -34,6 +34,8 @@ int main() {
 		{"f", 10},
 		{"g", 15},
 		{"h", 17},
+		{"i", 17},
+		{"j", 17},
 	};
 	auto v2 = v1;
 	cout << "original vector: " << v1<< endl;

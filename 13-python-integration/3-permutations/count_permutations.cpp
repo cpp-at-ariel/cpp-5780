@@ -14,7 +14,7 @@ int count_permutations(int N) {
 }
 
 int main() {
-	for (int N=5;N<14; ++N) {
+	for (int N=1; N<14; ++N) {
 		cout << "Permutations of 1.." << N << ":" << endl;
 		auto begin = time(NULL);
 		auto count = count_permutations(N);

@@ -16,14 +16,14 @@ public:
 		ptr(new_ptr) {}
 
 	AutoPointer<T>& operator=(T* new_ptr) {
-		if (ptr) delete ptr;
+		if (ptr!=nullptr) delete ptr;
 		ptr = new_ptr;
 		return *this;
 	}
 
 	// Delete when out of scope:
 	~AutoPointer() {
-		if (ptr) delete ptr;
+		if (ptr!=nullptr) delete ptr;
 	}
 
 	// Behave like C pointer:

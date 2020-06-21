@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <fstream>
 #include <iterator>
 #include <algorithm>
 #include <vector>
@@ -23,6 +24,21 @@ int main() {
 	cout << "v1: " << v1 << endl;
 	cout << "v2: " << v2 << endl;
 	set_union(begin(v1), end(v1), begin(v2), end(v2), back_inserter(vunion));
+
+	ifstream file1("file1.txt");
+	ifstream file2("file2.txt");
+	ofstream union_file("union_file.txt");
+	// set_union(
+	// 	istream_iterator<int>(file1), istream_iterator<int>{}, 
+	// 	istream_iterator<int>(file2), istream_iterator<int>{}, 
+	// 	ostream_iterator<int>(union_file,"\n"));
+
+	set_union(
+		istream_iterator<string>(file1), istream_iterator<string>{}, 
+		istream_iterator<string>(file2), istream_iterator<string>{}, 
+		ostream_iterator<string>(union_file,"\n"));
+
+
 	cout << "v1 U v2: " << vunion << endl;
 	set_intersection(begin(v1), end(v1), begin(v2), end(v2), back_inserter(vintersect));
 	cout << "v1 ^ v2: " << vintersect << endl;
