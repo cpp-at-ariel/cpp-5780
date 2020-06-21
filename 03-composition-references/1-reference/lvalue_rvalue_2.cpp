@@ -18,6 +18,11 @@ void test2(const int& z) {
 
 int main() {
     int x = 5;
+    int& xr = x;
+
+    const int y = 6;
+    // int& yr = y;
+    const int& yr  = y;
 
     //test1(x);
     //test1(x+1); // illegal for r-value
