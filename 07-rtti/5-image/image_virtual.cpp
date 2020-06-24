@@ -40,11 +40,10 @@ int main() {
   ///image processing
   ///
   //imageFile.write(&image, 3*dimx*dimy);         // compile error
-  //imageFile << image;
-  //compressedImage = compress(image);
-  imageFile.write((char*)(image), 3*dimx*dimy);   // fine
-  //imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);  // fine
+  imageFile.write((char*)(image), 3*dimx*dimy);   // logic error
+  //imageFile.write(reinterpret_cast<char*>(&image), 3*dimx*dimy);    // logic error
 
+  // How to fix the logic error without removing virtual:
   // for (int j = 0; j < dimy; ++j)  {  // row
   //   for (int i = 0; i < dimx; ++i) { // column
   //     imageFile.write((char*)(&image[dimx*j+i]), 3);

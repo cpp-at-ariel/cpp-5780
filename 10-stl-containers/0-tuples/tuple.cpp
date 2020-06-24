@@ -47,6 +47,9 @@ int main() {
 	cout << get<0>(t) << " " << get<1>(t) << " " << get<2>(t) << endl;
 	auto [t0,t1,t2] = t;
 
+	auto [x0,x1,_] = t;
+
+
 	auto f = f_automatic_both; // f is a pointer to function
 	auto [ii,cc,ss] = f();
 	// Equivalent to:

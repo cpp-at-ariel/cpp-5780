@@ -30,7 +30,7 @@ int main() {
 		++it
 		)
 	{
-		string val = *it;
+		const string& val = *it;
 		*it = "Life\n";
 		cout << it->size() << " ";
 		cout << *it;

@@ -177,10 +177,12 @@ public:
 
 
 	iterator begin() {
+		// return &(m_first->m_value); 
 		return iterator{m_first};
 	}
 	
 	iterator end() {
+		// return nullptr; 
 		return iterator{nullptr};
 	}
 

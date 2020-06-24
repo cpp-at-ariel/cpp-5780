@@ -85,30 +85,23 @@ void printwords(){
 		);
 
 	std::map<string, size_t> freqs;
-	for (auto const& word : words)
-	{
-		if (freqs.count(word) == 0)
-		{
+	for (auto const& word : words) {
+		if (freqs.count(word) == 0) {
 			freqs[word] = 1;
-		}
-		else
-		{
+		} else {
 			++freqs[word];
 		}
 	}
-	std::multimap<size_t, std::string,std::greater<size_t>> reverse_freqs;
-	for (auto const& pair : freqs)
-	{
-		reverse_freqs.insert({pair.second, pair.first});
+
+	std::multimap<size_t, std::string, std::greater<size_t>> reverse_freqs;
+	for (auto const& [str, num]: freqs) {
+		reverse_freqs.insert({num, str});
 	}
 	int i = 0;
-	for (auto const& freq_and_word : reverse_freqs)
-	{
+	for (auto const& [num, str]: reverse_freqs) {
 		if (i++ >= 10) break;
-		cout << freq_and_word.second << endl;
+		cout << str << endl;
 	}
-
-
 }
 
 
@@ -120,8 +113,8 @@ int main() {
 	std::cout << "isBalanced algo: "<< isBalanced("}") << "\n";
 	std::cout << "isBalanced algo: "<< isBalanced("}[]{") << "\n";
 
-//	vector<int> vec{1,3,-2,-1,4,0,0,-4};
-	vector<int> vec={2,-2};
+	vector<int> vec{1,-2,3,-1,0,5,8,0,-4};
+	// vector<int> vec={2,-2};
 	std::cout << "FindInSet algo: "<< boolalpha << FindInSet(vec,4) << "\n";
 
 	std::cout << "countZeros algo: "<< countZeros(vec) << "\n";

@@ -39,7 +39,6 @@ int main(int argc, char **argv) {
 
 
 
-/*
     // auto a = Complex(3,2)+Complex(4,3);
     // cout << "type of a: " << typeid(a).name() << endl;
 
@@ -164,7 +163,7 @@ int main(int argc, char **argv) {
 
         cout << "Reading a complex number from a file:" << endl;
         cout << "Before: c2 = " << c2<<endl;
-        fstream fin("inputs/w2.txt");
+        ifstream fin("inputs/w2.txt");
         if (!fin) {
             cerr << "File " << argv[1] << " not open" << endl;
             return 1;
@@ -199,6 +198,5 @@ int main(int argc, char **argv) {
         assert (soutput.str()=="91+2i");
     }
     return 0;
-    */
 
 }

@@ -10,6 +10,7 @@
 #include <string>
 using namespace std;
 
+
 // Throw a string:
 double safesqrt(double x) {
 	if (x<0)

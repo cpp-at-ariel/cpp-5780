@@ -53,7 +53,7 @@ int main() {
 	cout << "length = " << length << endl;
 	Seconds time   = 3;  // 3 seconds
 	cout << "time = " << time << endl;
-	//cout << time+length;   // compilation error
+	// cout << time+length;   // compilation error
 
 	Seconds time1 = 1.0_hour + 2.0_min + 50.0_sec;
 	cout << "time1 = " << time1 << endl;

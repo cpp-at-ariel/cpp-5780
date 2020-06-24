@@ -6,6 +6,8 @@
 #include <iostream>
 using namespace std;
 
+
+
 class Point {
     int x;
     int y;
@@ -38,9 +40,6 @@ class Point {
     }
 };
 
-
-
-int Point::MAXY = 768;
 
 
 int main() {

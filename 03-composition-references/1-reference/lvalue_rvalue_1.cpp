@@ -16,9 +16,9 @@ int main() {
     int& r = x;    // legal for l-value
 
     //x+1 is an r-value
-    //int* px1 = &(x+1);   // illegal for r-value
-    //(x+1) = 10;            // illegal for r-value
-    //int& r1 = (x+1);    // illegal for r-value
+    // int* px1 = &(x+1);     // illegal for r-value
+    // (x+1) = 10;            // illegal for r-value
+    // int& r1 = (x+1);       // illegal for r-value
     //int* px11 = &r1;
     //r1 = 10;
 
@@ -27,6 +27,6 @@ int main() {
     //int* px2 = &r2;      // illegal for const reference
     //(*px2) = 10;
     //r2 = 10;             // illegal for const reference
-    //int& r3 = r2;          // illegal for const reference
+    //int& r3 = r2;        // illegal for const reference
 
 }

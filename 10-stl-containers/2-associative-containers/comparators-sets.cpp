@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <set>
+#include <vector>
 using namespace std;
 
 // bool operator<(int a, int b) {
@@ -52,7 +53,12 @@ struct UserDefinedOrder {
 };
 
 
+struct dummy{};
+
 int main() {
+	// set<dummy> sv;
+	// sv.insert(dummy{});
+
 	// Demonstrate two kinds of comparison functors:
 	SederYored compare;
 	cout << boolalpha << compare(5,4) << endl;

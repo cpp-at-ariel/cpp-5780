@@ -146,7 +146,7 @@ class vector<bool> {
     // Does not work (1):
     // bool& operator[](int i) { 
     //   check_index(i);
-    //   return (data[i/8] >> i%8) & 1;
+    //   return (bool)((data[i/8] >> i%8) & 1);
     // }
 
     // Does not work (2): 

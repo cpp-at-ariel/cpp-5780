@@ -12,7 +12,7 @@ using std::string;
 
 template<typename T, typename R>
 T sum (T a, R b) {
-	//f(a);  // compilation error
+	// f(a);  // compilation error
 	return a+b;
 }
 
