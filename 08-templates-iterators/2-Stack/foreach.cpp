@@ -11,9 +11,11 @@ int main() {
 	strStk.push("world!");
 	strStk.push("Hello");
 
-	// string  strStk[2] {"Hello","world!"};
-	for (const string& val: strStk) {
-		cout << val.size() << " ";
+	// for (const string& val: strStk) {
+
+
+	for (Stk<string>::iterator i=strStk.begin(); i!=strStk.end(); ++i) {
+		string val = *i;
 		cout << val << endl;
 	}
 	return 0;
